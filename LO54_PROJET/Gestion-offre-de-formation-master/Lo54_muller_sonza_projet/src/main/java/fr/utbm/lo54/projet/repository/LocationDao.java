@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tools;
+package fr.utbm.lo54.projet.repository;
 
 /**
  *
  * @author gmulle01
  */
-public class HibernateUtil {
+public class LocationDao {
     
 }
