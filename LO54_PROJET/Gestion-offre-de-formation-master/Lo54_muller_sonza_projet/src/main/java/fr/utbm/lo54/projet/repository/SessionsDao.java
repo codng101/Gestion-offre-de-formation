@@ -7,6 +7,8 @@ package fr.utbm.lo54.projet.repository;
 
 import fr.utbm.lo54.projet.entity.Sessions;
 import fr.utbm.lo54.projet.tools.HibernateUtil;
+import java.util.List;
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 /**
@@ -34,5 +36,30 @@ public class SessionsDao {
         session.save(s);
         session.getTransaction().commit();
     }
+    public List<Sessions> getAllSessionss()
+    {
+        Query query = session.createQuery("from Sessions");
+        List<Sessions> ses = query.list();
+        
+        return ses;
+    }
     
+    public Sessions getSessionsById(int id)
+    {
+        Query query = session.createQuery("from Sessions WHERE session_id = "+id);
+        return (Sessions)query.uniqueResult();
+    }
+    public void deleteSessions(int id)
+    {
+        //session.delete(loc);
+        //session.flush();
+        Query q = session.createQuery("delete from Session where session_id = "+id);
+        q.executeUpdate();
+    }
+    public void setSessions(Sessions s)
+    {
+        session.beginTransaction();
+        session.update(s);
+        session.getTransaction().commit();
+    }
 }

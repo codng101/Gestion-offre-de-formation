@@ -38,9 +38,9 @@ public class ClientDao {
     public List<Client> getAllClients()
     {
         Query query = session.createQuery("from Client");
-        List<Client> films = query.list();
+        List<Client> clients = query.list();
         
-        return films;
+        return clients;
     }
     
     public Client getClientById(int id)
@@ -48,4 +48,17 @@ public class ClientDao {
         Query query = session.createQuery("from Client WHERE client_id = "+id);
         return (Client)query.uniqueResult();
     }
+    public void deleteClient(int id)
+    {
+        //session.delete(loc);
+        //session.flush();
+        Query q = session.createQuery("delete from client where client_id = "+id);
+        q.executeUpdate();
+    }
+    public void setClient(Client c)
+    {
+        session.beginTransaction();
+        session.update(c);
+        session.getTransaction().commit();
+    } 
 }   

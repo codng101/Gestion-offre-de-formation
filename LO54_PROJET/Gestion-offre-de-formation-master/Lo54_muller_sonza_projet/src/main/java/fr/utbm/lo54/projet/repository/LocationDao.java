@@ -7,6 +7,8 @@ package fr.utbm.lo54.projet.repository;
 
 import fr.utbm.lo54.projet.entity.Location;
 import fr.utbm.lo54.projet.tools.HibernateUtil;
+import java.util.List;
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 /**
@@ -31,6 +33,31 @@ public class LocationDao {
     {
         session.beginTransaction();
         session.save(l);
+        session.getTransaction().commit();
+    }
+    public List<Location> getAllLocations()
+    {
+        Query query = session.createQuery("from Location");
+        List<Location> locs = query.list();
+        return locs;
+    }
+    
+    public Location getLocationById(int id)
+    {
+        Query query = session.createQuery("from Location WHERE loc_id = "+id);
+        return (Location)query.uniqueResult();
+    }
+    public void deleteLocation(int id)
+    {
+        //session.delete(loc);
+        //session.flush();
+        Query q = session.createQuery("delete from location where loc_id = "+id);
+        q.executeUpdate();
+    }
+    public void setLocation(Location l)
+    {
+        session.beginTransaction();
+        session.update(l);
         session.getTransaction().commit();
     }
 }

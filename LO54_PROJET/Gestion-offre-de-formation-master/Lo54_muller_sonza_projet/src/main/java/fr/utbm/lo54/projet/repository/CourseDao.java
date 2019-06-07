@@ -38,14 +38,27 @@ public class CourseDao {
     public List<Course> getAllCourses()
     {
         Query query = session.createQuery("from Course");
-        List<Course> films = query.list();
+        List<Course> courses = query.list();
         
-        return films;
+        return courses;
     }
     
-    public Course getCourseById(int id)
+    public Course getCourseById(String id)
     {
         Query query = session.createQuery("from Course WHERE code = "+id);
         return (Course)query.uniqueResult();
+    }
+    public void deleteCourse(String id)
+    {
+        //session.delete(loc);
+        //session.flush();
+        Query q = session.createQuery("delete from Course where code = "+id);
+        q.executeUpdate();
+    }
+    public void setCourse(Course c)
+    {
+        session.beginTransaction();
+        session.update(c);
+        session.getTransaction().commit();
     }
 }
