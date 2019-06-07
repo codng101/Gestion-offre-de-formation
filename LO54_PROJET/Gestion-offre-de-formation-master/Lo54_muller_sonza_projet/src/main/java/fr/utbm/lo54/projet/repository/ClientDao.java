@@ -7,6 +7,8 @@ package fr.utbm.lo54.projet.repository;
 
 import fr.utbm.lo54.projet.entity.Client;
 import fr.utbm.lo54.projet.tools.HibernateUtil;
+import java.util.List;
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 /**
@@ -32,5 +34,18 @@ public class ClientDao {
         session.beginTransaction();
         session.save(c);
         session.getTransaction().commit();
-    }            
+    }  
+    public List<Client> getAllClients()
+    {
+        Query query = session.createQuery("from Client");
+        List<Client> films = query.list();
+        
+        return films;
+    }
+    
+    public Client getClientById(int id)
+    {
+        Query query = session.createQuery("from Client WHERE client_id = "+id);
+        return (Client)query.uniqueResult();
+    }
 }   

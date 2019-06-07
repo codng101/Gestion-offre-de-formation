@@ -7,6 +7,8 @@ package fr.utbm.lo54.projet.repository;
 
 import fr.utbm.lo54.projet.entity.Course;
 import fr.utbm.lo54.projet.tools.HibernateUtil;
+import java.util.List;
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 /**
@@ -32,5 +34,18 @@ public class CourseDao {
         session.beginTransaction();
         session.save(c);
         session.getTransaction().commit();
+    }
+    public List<Course> getAllCourses()
+    {
+        Query query = session.createQuery("from Course");
+        List<Course> films = query.list();
+        
+        return films;
+    }
+    
+    public Course getCourseById(int id)
+    {
+        Query query = session.createQuery("from Course WHERE code = "+id);
+        return (Course)query.uniqueResult();
     }
 }
