@@ -25,6 +25,13 @@
             <artifactId>derbyclient</artifactId>
             <version>10.12.1.1</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports -->
+        <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports</artifactId>
+            <version>6.8.0</version>
+        </dependency>
+
     </dependencies>
 
 </project>
