@@ -1,0 +1,14 @@
+- Créer des locations -> Servlet
+	- Modifier / supprimer location 
+
+- Créer des cours -> JSP (form) (nécessite locations)
+	- Créer des sessions (nécessite cours)
+
+- S'inscrire aux sessions disponibles -> Servlet à part
+	- Lors de l'inscription, vérifier que le client n'est pas déjà inscrit à la même heure autre part
+
+- Accéder aux comptes clients -> voir les clients : Servlet
+	- Créer des clients -> JSP (form)
+	- Modifier / supprimer des clients : Servlet ?
+
+ 
