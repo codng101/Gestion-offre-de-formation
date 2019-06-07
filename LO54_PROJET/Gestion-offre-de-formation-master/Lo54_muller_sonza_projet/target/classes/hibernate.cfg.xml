@@ -11,6 +11,7 @@
     <property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
     <property name="show_sql">true</property>
     <property name="format_sql">true</property>
-    <property name="hbm2ddl.auto">create</property>
+    <property name="hbm2ddl.auto">update</property>
+	<mapping class="fr.utbm.lo54.projet.entity.Course"/>
   </session-factory>
 </hibernate-configuration>

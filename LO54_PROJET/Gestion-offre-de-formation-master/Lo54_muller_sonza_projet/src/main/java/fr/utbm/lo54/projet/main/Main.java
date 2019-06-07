@@ -7,6 +7,7 @@ package fr.utbm.lo54.projet.main;
 
 import org.hibernate.cfg.AnnotationConfiguration;
 import fr.utbm.lo54.projet.entity.*;
+import fr.utbm.lo54.projet.repository.CourseDao;
 import org.hibernate.tool.hbm2ddl.SchemaExport;
 /**
  *
@@ -23,8 +24,18 @@ public class Main {
         conf.addAnnotatedClass(Location.class);
         conf.addAnnotatedClass(Sessions.class);
         conf.addAnnotatedClass(Course.class);
+        //conf.addClass(Client.class);
+        //conf.addClass(Location.class);
+        //conf.addClass(Sessions.class);
+        //conf.addClass(Course.class);
         conf.configure("hibernate.cfg.xml");
-        new SchemaExport(conf).create(true,true);
+        //new SchemaExport(conf).create(true,true);
+        Course c=new Course("LO54","LO54");
+        CourseDao CDao=new CourseDao();
+        CDao.connect();
+        CDao.getAllCourses();
+        System.out.print(CDao.getAllCourses());
+        CDao.disconnect();
     }
     
 }
