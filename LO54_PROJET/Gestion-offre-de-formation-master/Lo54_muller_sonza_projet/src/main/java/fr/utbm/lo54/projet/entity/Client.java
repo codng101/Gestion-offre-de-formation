@@ -19,14 +19,14 @@ public class Client implements Serializable
     private String phone;
     private String email;
     
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "clients") // Case sensitive, référence le set contenu dans l'entité Session (le set s'appelle clients)
-    private Set<Session> sessions; 
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "clients") // Case sensitive, référence le set contenu dans l'entité Sessions (le set s'appelle clients)
+    private Set<Sessions> sessions; 
 
-    public Set<Session> getSessions() {
+    public Set<Sessions> getSessions() {
         return sessions;
     }
 
-    public void setSessions(Set<Session> sessions) {
+    public void setSessions(Set<Sessions> sessions) {
         this.sessions = sessions;
     }
 

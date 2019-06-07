@@ -21,7 +21,7 @@ public class Main {
         AnnotationConfiguration conf = new AnnotationConfiguration();
         conf.addAnnotatedClass(Client.class);
         conf.addAnnotatedClass(Location.class);
-        conf.addAnnotatedClass(Session.class);
+        conf.addAnnotatedClass(Sessions.class);
         conf.addAnnotatedClass(Course.class);
         conf.configure("hibernate.cfg.xml");
         new SchemaExport(conf).create(true,true);

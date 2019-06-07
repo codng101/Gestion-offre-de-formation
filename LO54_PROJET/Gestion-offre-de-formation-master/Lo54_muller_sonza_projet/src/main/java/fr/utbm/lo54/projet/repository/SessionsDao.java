@@ -5,7 +5,7 @@
  */
 package fr.utbm.lo54.projet.repository;
 
-import fr.utbm.lo54.projet.entity.Course;
+import fr.utbm.lo54.projet.entity.Sessions;
 import fr.utbm.lo54.projet.tools.HibernateUtil;
 import org.hibernate.Session;
 
@@ -13,7 +13,8 @@ import org.hibernate.Session;
  *
  * @author gmulle01
  */
-public class CourseDao {
+public class SessionsDao {
+    
     private Session session;
     private HibernateUtil util;
     
@@ -27,10 +28,11 @@ public class CourseDao {
     {
         session.close();
     }
-    public void addCourse(Course c)
+    public void addSessions(Sessions s)
     {
         session.beginTransaction();
-        session.save(c);
+        session.save(s);
         session.getTransaction().commit();
     }
+    
 }

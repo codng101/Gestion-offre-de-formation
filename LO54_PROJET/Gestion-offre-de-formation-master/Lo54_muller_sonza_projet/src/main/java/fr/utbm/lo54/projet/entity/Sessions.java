@@ -9,7 +9,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="UD_SESSION")
-public class Session implements Serializable
+public class Sessions implements Serializable
 {
 
     @Id
@@ -64,17 +64,17 @@ public class Session implements Serializable
         this.clients = setClients;
     }
     
-    public Session() {
+    public Sessions() {
     }
 
-    public Session(Date startDate, Date endDate, int max) 
+    public Sessions(Date startDate, Date endDate, int max) 
     {
         this.startDate = startDate;
         this.endDate = endDate;
         this.maximum = max;
     }
     
-    public Session(int id, Date startDate, Date endDate, int max) {
+    public Sessions(int id, Date startDate, Date endDate, int max) {
         this.session_id = id;
         this.startDate = startDate;
         this.endDate = endDate;

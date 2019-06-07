@@ -5,9 +5,8 @@
  */
 package fr.utbm.lo54.projet.repository;
 
+import fr.utbm.lo54.projet.entity.Client;
 import fr.utbm.lo54.projet.tools.HibernateUtil;
-import org.hibernate.HibernateException;
-import org.hibernate.Query;
 import org.hibernate.Session;
 
 /**
@@ -15,44 +14,23 @@ import org.hibernate.Session;
  * @author gmulle01
  */
 public class ClientDao {
-    public void createClient(String firstname, String lastname, String address, String phone, String email) {
-	    Session session = HibernateUtil.getSessionFactory().openSession();
-	    try {
-	        session.beginTransaction();
-	        //création d'un client
-                String hql = "INSERT INTO Client(:firstname, :lastname, :address, :phone, :email)";
-                Query query = session.createQuery(hql);
-                query.setParameter("firstname",firstname);
-                query.setParameter("lastname",lastname);
-                query.setParameter("address",address);
-                query.setParameter("phone",phone);
-                query.setParameter("email",email);
-                int result = query.executeUpdate();
-                System.out.println("Rows affected: " + result);
-	        session.getTransaction().commit();
-		}
-		catch (HibernateException he) {
-	        he.printStackTrace();
-	        if(session.getTransaction() != null) {
-	            try {
-	                session.getTransaction().rollback();
-	            }catch(HibernateException he2) {he2.printStackTrace(); }
-	        }
-		}
-		finally {
-	        if(session != null) {
-	            try { session.close();
-                    
-                    }
-                    catch (HibernateException he) {
-	        he.printStackTrace();
-	        if(session.getTransaction() != null) {
-	            try {
-	                session.getTransaction().rollback();
-	            }catch(HibernateException he2) {he2.printStackTrace(); }
-	        }
-		}
-                }
-            }
+    private Session session;
+    private HibernateUtil util;
+    
+    public void connect()
+    {
+        util = new HibernateUtil();
+        session =util.getSessionFactory().openSession();
+    }
+    
+    public void disconnect()
+    {
+        session.close();
+    }
+    public void addClient(Client c)
+    {
+        session.beginTransaction();
+        session.save(c);
+        session.getTransaction().commit();
     }            
 }   
