@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author El Popcorn
  */
-@WebServlet(name = "AddLocationServlet", urlPatterns = {"/AddLocationServlet"})
+@WebServlet(name = "AddLocationServlet", urlPatterns = {"/AjouterUnLieu"})
 public class AddLocationServlet extends HttpServlet {
     public static final String VUE = "/WEB-INF/addLocationForm.jsp";
     public static final String CHAMP_NOMVILLE ="city";

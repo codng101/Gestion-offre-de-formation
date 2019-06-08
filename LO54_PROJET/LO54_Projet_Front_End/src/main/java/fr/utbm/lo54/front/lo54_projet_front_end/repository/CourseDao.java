@@ -6,7 +6,7 @@
 package fr.utbm.lo54.front.lo54_projet_front_end.repository;
 
 import fr.utbm.lo54.front.lo54_projet_front_end.entity.Course;
-import fr.utbm.lo54.projet.tools.HibernateUtil;
+import fr.utbm.lo54.front.lo54_projet_front_end.tools.HibernateUtil;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;

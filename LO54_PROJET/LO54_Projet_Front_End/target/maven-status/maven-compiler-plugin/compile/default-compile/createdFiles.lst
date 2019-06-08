@@ -1,0 +1,10 @@
+fr\utbm\lo54\front\lo54_projet_front_end\entity\Sessions.class
+fr\utbm\lo54\front\lo54_projet_front_end\tools\HibernateUtil.class
+fr\utbm\lo54\front\lo54_projet_front_end\repository\LocationDao.class
+fr\utbm\lo54\front\lo54_projet_front_end\entity\Location.class
+fr\utbm\lo54\front\lo54_projet_front_end\repository\ClientDao.class
+fr\utbm\lo54\front\lo54_projet_front_end\entity\Course.class
+fr\utbm\lo54\front\lo54_projet_front_end\repository\SessionsDao.class
+fr\utbm\lo54\front\lo54_projet_front_end\entity\Client.class
+fr\utbm\lo54\front\lo54_projet_front_end\repository\CourseDao.class
+fr\utbm\lo54\front\lo54_projet_front_end\backoffice\AddLocationServlet.class

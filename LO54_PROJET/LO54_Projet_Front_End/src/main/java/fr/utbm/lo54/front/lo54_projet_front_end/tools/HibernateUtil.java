@@ -6,6 +6,10 @@
 package fr.utbm.lo54.front.lo54_projet_front_end.tools;
 
 //import org.hibernate.SessionFactory;
+
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
 //import org.hibernate.cfg.Configuration;
 
 public class HibernateUtil {
