@@ -1,4 +1,4 @@
-- Créer des locations -> Servlet
+- Créer des locations -> JSP
 	- Modifier / supprimer location 
 
 - Créer des cours -> JSP (form) (nécessite locations)
