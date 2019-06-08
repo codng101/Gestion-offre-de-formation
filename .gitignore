@@ -1,3 +1,11 @@
 
 LO54_PROJET/Gestion-offre-de-formation-master/Lo54_muller_sonza_projet/target/maven-archiver/pom.properties
 LO54_PROJET/Gestion-offre-de-formation-master/Lo54_muller_sonza_projet/target/fr.utbm.lo54.projet-1.0-SNAPSHOT.jar
+LO54_PROJET/LO54_Projet_Front_End/target/classes/fr/utbm/lo54/front/lo54_projet_front_end/entity/Course.class
+LO54_PROJET/LO54_Projet_Front_End/target/classes/fr/utbm/lo54/front/lo54_projet_front_end/entity/Location.class
+LO54_PROJET/LO54_Projet_Front_End/target/classes/fr/utbm/lo54/front/lo54_projet_front_end/repository/ClientDao.class
+*.class
+*.class
+LO54_PROJET/LO54_Projet_Front_End/target/classes/fr/utbm/lo54/front/lo54_projet_front_end/tools/HibernateUtil.class
+LO54_PROJET/LO54_Projet_Front_End/target/classes/fr/utbm/lo54/front/lo54_projet_front_end/repository/ClientDao.class
+*.war
