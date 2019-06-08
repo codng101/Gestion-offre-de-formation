@@ -1,0 +1,11 @@
+{
+    "elements": {},
+    "attributes": {
+        "aria-current": {
+            "context": "li"
+        },
+        "scope": {
+            "context": "tr"
+        }
+    }
+}
