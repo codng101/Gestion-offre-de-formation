@@ -1,0 +1,10 @@
+D:\_UTBM\INFO04\LO54\Projet\Gestion-offre-de-formation\LO54_PROJET\LO54_Projet_Front_End\src\main\java\fr\utbm\lo54\front\lo54_projet_front_end\repository\LocationDao.java
+D:\_UTBM\INFO04\LO54\Projet\Gestion-offre-de-formation\LO54_PROJET\LO54_Projet_Front_End\src\main\java\fr\utbm\lo54\front\lo54_projet_front_end\backoffice\AddLocationServlet.java
+D:\_UTBM\INFO04\LO54\Projet\Gestion-offre-de-formation\LO54_PROJET\LO54_Projet_Front_End\src\main\java\fr\utbm\lo54\front\lo54_projet_front_end\repository\SessionsDao.java
+D:\_UTBM\INFO04\LO54\Projet\Gestion-offre-de-formation\LO54_PROJET\LO54_Projet_Front_End\src\main\java\fr\utbm\lo54\front\lo54_projet_front_end\entity\Client.java
+D:\_UTBM\INFO04\LO54\Projet\Gestion-offre-de-formation\LO54_PROJET\LO54_Projet_Front_End\src\main\java\fr\utbm\lo54\front\lo54_projet_front_end\entity\Sessions.java
+D:\_UTBM\INFO04\LO54\Projet\Gestion-offre-de-formation\LO54_PROJET\LO54_Projet_Front_End\src\main\java\fr\utbm\lo54\front\lo54_projet_front_end\repository\ClientDao.java
+D:\_UTBM\INFO04\LO54\Projet\Gestion-offre-de-formation\LO54_PROJET\LO54_Projet_Front_End\src\main\java\fr\utbm\lo54\front\lo54_projet_front_end\entity\Location.java
+D:\_UTBM\INFO04\LO54\Projet\Gestion-offre-de-formation\LO54_PROJET\LO54_Projet_Front_End\src\main\java\fr\utbm\lo54\front\lo54_projet_front_end\repository\CourseDao.java
+D:\_UTBM\INFO04\LO54\Projet\Gestion-offre-de-formation\LO54_PROJET\LO54_Projet_Front_End\src\main\java\fr\utbm\lo54\front\lo54_projet_front_end\tools\HibernateUtil.java
+D:\_UTBM\INFO04\LO54\Projet\Gestion-offre-de-formation\LO54_PROJET\LO54_Projet_Front_End\src\main\java\fr\utbm\lo54\front\lo54_projet_front_end\entity\Course.java
