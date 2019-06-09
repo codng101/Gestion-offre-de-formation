@@ -12,6 +12,6 @@
     <property name="show_sql">true</property>
     <property name="format_sql">true</property>
     <property name="hbm2ddl.auto">update</property>
-	<mapping class="fr.utbm.lo54.projet.entity.Course"/>
+	<mapping class="fr.utbm.lo54.front.lo54_projet_front_end.entity.Location"/>
   </session-factory>
 </hibernate-configuration>
