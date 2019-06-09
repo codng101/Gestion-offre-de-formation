@@ -12,3 +12,4 @@ LO54_PROJET/LO54_Projet_Front_End/target/classes/fr/utbm/lo54/front/lo54_projet_
 *.class
 LO54_PROJET/LO54_Projet_Front_End/target/classes/fr/utbm/lo54/front/lo54_projet_front_end/repository/ClientDao.class
 *.lst
+LO54_PROJET/LO54_Projet_Front_End/target/classes/fr/utbm/lo54/front/lo54_projet_front_end/tools/HibernateUtil.class
