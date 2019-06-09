@@ -13,5 +13,8 @@
     <property name="format_sql">true</property>
     <property name="hbm2ddl.auto">update</property>
 	<mapping class="fr.utbm.lo54.projet.entity.Course"/>
+	<mapping class="fr.utbm.lo54.projet.entity.Sessions"/>
+	<mapping class="fr.utbm.lo54.projet.entity.Client"/>
+	<mapping class="fr.utbm.lo54.projet.entity.Location"/>
   </session-factory>
 </hibernate-configuration>
