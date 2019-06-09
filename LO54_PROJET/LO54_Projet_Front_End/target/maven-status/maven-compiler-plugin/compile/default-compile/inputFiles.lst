@@ -4,6 +4,8 @@ D:\_UTBM\INFO04\LO54\Projet\Gestion-offre-de-formation\LO54_PROJET\LO54_Projet_F
 D:\_UTBM\INFO04\LO54\Projet\Gestion-offre-de-formation\LO54_PROJET\LO54_Projet_Front_End\src\main\java\fr\utbm\lo54\front\lo54_projet_front_end\entity\Client.java
 D:\_UTBM\INFO04\LO54\Projet\Gestion-offre-de-formation\LO54_PROJET\LO54_Projet_Front_End\src\main\java\fr\utbm\lo54\front\lo54_projet_front_end\entity\Sessions.java
 D:\_UTBM\INFO04\LO54\Projet\Gestion-offre-de-formation\LO54_PROJET\LO54_Projet_Front_End\src\main\java\fr\utbm\lo54\front\lo54_projet_front_end\repository\ClientDao.java
+D:\_UTBM\INFO04\LO54\Projet\Gestion-offre-de-formation\LO54_PROJET\LO54_Projet_Front_End\src\main\java\fr\utbm\lo54\front\lo54_projet_front_end\backoffice\IsKoAddLocationServlet.java
+D:\_UTBM\INFO04\LO54\Projet\Gestion-offre-de-formation\LO54_PROJET\LO54_Projet_Front_End\src\main\java\fr\utbm\lo54\front\lo54_projet_front_end\backoffice\IsOkAddLocationServlet.java
 D:\_UTBM\INFO04\LO54\Projet\Gestion-offre-de-formation\LO54_PROJET\LO54_Projet_Front_End\src\main\java\fr\utbm\lo54\front\lo54_projet_front_end\entity\Location.java
 D:\_UTBM\INFO04\LO54\Projet\Gestion-offre-de-formation\LO54_PROJET\LO54_Projet_Front_End\src\main\java\fr\utbm\lo54\front\lo54_projet_front_end\repository\CourseDao.java
 D:\_UTBM\INFO04\LO54\Projet\Gestion-offre-de-formation\LO54_PROJET\LO54_Projet_Front_End\src\main\java\fr\utbm\lo54\front\lo54_projet_front_end\tools\HibernateUtil.java

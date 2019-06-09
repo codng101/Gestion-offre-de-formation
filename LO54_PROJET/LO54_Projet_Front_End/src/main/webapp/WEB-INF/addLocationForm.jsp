@@ -8,24 +8,24 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Création des lieux</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Création des lieux</title>
         <link rel="stylesheet" type="text/css" href="boots.css">
     </head>
     <body>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="/localhost:8080/index.html">Acceuil</a></li>
+              <li class="breadcrumb-item"><a href='http://localhost:8080/LO54_Projet_Front_End/index.html'>Acceuil</a></li>
               <li class="breadcrumb-item active" aria-current="page">Lieux</li>
             </ol>
         </nav>
-        <form>
+        <form style='margin-left: 10px;' action='AjouterUnLieu' method='post'>
             <div class="form-group">
-              <label for="exampleInputEmail1">Nom de la ville</label>
-              <input type="email" class="form-control" id="city" aplaceholder="Entrez le nom de la ville...">
+              <label for="city">Nom de la ville</label>
+              <input type="text" class="form-control" name="city" id='city' placeholder="Entrez le nom de la ville...">
             </div>
            
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" id='button_add_city' class="btn btn-primary">Enregistrer</button>
         </form>
     </body>
 </html>

@@ -5,11 +5,8 @@
  */
 package fr.utbm.lo54.front.lo54_projet_front_end.backoffice;
 
-import fr.utbm.lo54.front.lo54_projet_front_end.entity.Location;
-import fr.utbm.lo54.front.lo54_projet_front_end.repository.LocationDao;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,12 +17,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author El Popcorn
  */
-@WebServlet(name = "AddLocationServlet", urlPatterns = {"/AjouterUnLieu"})
-public class AddLocationServlet extends HttpServlet {
-    public static final String VUE = "/WEB-INF/addLocationForm.jsp";
-    public static final String CHAMP_NOMVILLE ="city";
-    public static final String IS_OK_SERVLET ="/LieuAjoute";
-    public static final String IS_KO_SERVLET="/LieuPasAjoute";
+@WebServlet(name = "IsOkAddLocationServlet", urlPatterns = {"/LieuAjoute"})
+public class IsOkAddLocationServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -44,10 +37,12 @@ public class AddLocationServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AddLocationServlet</title>");            
+            out.println(" <link rel=\"stylesheet\" type=\"text/css\" href=\"boots.css\">");
+            out.println("<title>Servlet TestServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet AddLocationServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Lieu ajouté avec succés</h1>");
+            out.println("<div><a href='http://localhost:8080/LO54_Projet_Front_End/index.html'> Retour à la page d'acceuil </a></div>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -65,8 +60,7 @@ public class AddLocationServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher rd = this.getServletContext().getRequestDispatcher(VUE);
-        rd.forward(request, response);
+        processRequest(request, response);
     }
 
     /**
@@ -80,48 +74,7 @@ public class AddLocationServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        /* Récupération des champs du formulaire. */
-        String cityName = request.getParameter( CHAMP_NOMVILLE );
-        System.out.println(cityName);
-        try 
-        {
-            if(!cityName.trim().equals(""))
-            {
-               LocationDao ld = new LocationDao();
-               Location l =  new Location(cityName);
-               ld.connect();
-               ld.addLocation(l);
-               ld.disconnect(); 
-               RequestDispatcher rs =  this.getServletContext().getRequestDispatcher(IS_OK_SERVLET);
-               rs.forward(request, response);
-            }
-            else
-            {
-                this.getServletContext().getRequestDispatcher(IS_KO_SERVLET).forward(request, response);
-            }
-            
-            
-           
-        } 
-        catch (Exception e) 
-        {  
-            try (PrintWriter out = response.getWriter()) 
-            { 
-                out.println("<!DOCTYPE html>");
-                out.println("<html>");
-                out.println("<head>");
-                out.println(" <link rel=\"stylesheet\" type=\"text/css\" href=\"boots.css\">");
-                out.println("<title>Servlet TestServlet</title>");            
-                out.println("</head>");
-                out.println("<body>");
-                out.println("<h1>Erreur lors de l'ajout du lieu</h1>");
-                out.println("<div> Erreur : ");
-                out.println(e.getMessage()+"</div>");
-                out.println("<div><a href='http://localhost:8080/LO54_Projet_Front_End/index.html'> Retour à la page d'acceuil </a></div>");
-                out.println("</body>");
-                out.println("</html>");
-            }
-        }
+        processRequest(request, response);
     }
 
     /**
