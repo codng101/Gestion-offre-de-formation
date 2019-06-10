@@ -9,23 +9,27 @@ import fr.utbm.lo54.front.lo54_projet_front_end.entity.Location;
 import fr.utbm.lo54.front.lo54_projet_front_end.repository.LocationDao;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
+
 /**
  *
  * @author El Popcorn
  */
-@WebServlet(name = "DisplayLocationsServlet", urlPatterns =
+@WebServlet(name = "DeleteLocationServlet", urlPatterns =
 {
-    "/VoirLieux"
+    "/SupprimerLieu"
 })
-public class DisplayLocationsServlet extends HttpServlet
+public class DeleteLocationServlet extends HttpServlet
 {
 
+    public static final String VUE = "/WEB-INF/deleteLocationForm.jsp";
+    public static final String CHAMP_ID="id";
+    public static final String CHAMP_NOMVILLE ="city";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -41,52 +45,15 @@ public class DisplayLocationsServlet extends HttpServlet
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter())
         {
-            LocationDao lDao = new LocationDao();
-            lDao.connect();
-            List<Location> locations = lDao.getAllLocations();
-            lDao.disconnect();
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println(" <link rel=\"stylesheet\" type=\"text/css\" href=\"boots.css\">");
-            out.println("<title>Liste des lieux</title>");            
+            out.println("<title>Servlet DeleteLocationServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<nav aria-label=\"breadcrumb\">");
-                out.println("<ol class=\"breadcrumb\">");
-                    out.println("<li class=\"breadcrumb-item\"><a href='http://localhost:8080/LO54_Projet_Front_End/index.html'>Acceuil</a></li>");
-                    out.println("<li class=\"breadcrumb-item active\" aria-current=\"page\">Liste des lieux</li>");
-                out.println("</ol>");
-            out.println("</nav>");
-            
-            out.println("<table class=\"table\">");
-                out.println("<thead class=\"thead-light\">");
-                    out.println("<tr> ");
-                        out.println("<th scope=\"col\" align='center'>Id</th>");
-                        out.println("<th scope=\"col\" >Nom de la ville</th>");
-                        out.println("<th scope=\"col\" > </th>");
-                        out.println("<th scope=\"col\" > </th>");
-                    out.println("</tr>");
-                out.println("</thead>");
-                out.println("<tbody>");
-                    for (Location location : locations)
-                    {
-                        out.println("<tr>");
-                            out.println("<td align='center'>");
-                                out.println(location.getId());
-                            out.println("</td>");
-                            out.println("<td>");
-                                out.println(location.getCity());                        
-                            out.println("</td>");
-                            out.println("<td>");
-                                out.println("<a href='http://localhost:8080/LO54_Projet_Front_End/ModifierLieu?id="+location.getId()+"&city="+location.getCity()+"'>Modifier</a>");
-                                out.println("<a href='http://localhost:8080/LO54_Projet_Front_End/SupprimerLieu?id="+location.getId()+"&city="+location.getCity()+"'>Supprimer</a>");
-
-                            out.println("</td>");
-                        out.println("</tr>");
-                    }
-                out.println("</tbody>");
+            out.println("<h1>Servlet DeleteLocationServlet at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
             out.println("</html>");
         }
     }
@@ -104,7 +71,8 @@ public class DisplayLocationsServlet extends HttpServlet
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-        processRequest(request, response);
+        RequestDispatcher rd = this.getServletContext().getRequestDispatcher(VUE);
+        rd.forward(request, response);
     }
 
     /**
@@ -119,7 +87,42 @@ public class DisplayLocationsServlet extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-        processRequest(request, response);
+        request.setCharacterEncoding("UTF-8"); // Pour gérer les accents mamène
+        String cityName = request.getParameter( CHAMP_NOMVILLE );
+        String idString =request.getParameter(CHAMP_ID);
+        int id = Integer.parseInt(idString);
+        try 
+        {
+               LocationDao ld = new LocationDao();
+               Location l =  new Location(cityName);
+               l.setId(id);
+               
+               ld.connect();
+               ld.deleteLocation(l);
+               ld.disconnect(); 
+               
+               RequestDispatcher rs =  this.getServletContext().getRequestDispatcher("/VoirLieux");
+               rs.forward(request, response);
+        } 
+        catch (Exception e) 
+        {  
+            try (PrintWriter out = response.getWriter()) 
+            { 
+                out.println("<!DOCTYPE html>");
+                out.println("<html>");
+                out.println("<head>");
+                out.println(" <link rel=\"stylesheet\" type=\"text/css\" href=\"boots.css\">");
+                out.println("<title>Servlet TestServlet</title>");            
+                out.println("</head>");
+                out.println("<body>");
+                out.println("<h1>Erreur lors de la suppression du lieu</h1>");
+                out.println("<div> Erreur : ");
+                out.println(e.getMessage()+"</div>");
+                out.println("<div><a href='http://localhost:8080/LO54_Projet_Front_End/index.html'> Retour à la page d'acceuil </a></div>");
+                out.println("</body>");
+                out.println("</html>");
+            }
+        }
     }
 
     /**

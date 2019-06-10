@@ -47,12 +47,16 @@ public class LocationDao {
         Query query = session.createQuery("from Location WHERE loc_id = "+id);
         return (Location)query.uniqueResult();
     }
-    public void deleteLocation(int id)
+    public void deleteLocation(Location loc)
     {
         //session.delete(loc);
         //session.flush();
-        Query q = session.createQuery("delete from location where loc_id = "+id);
-        q.executeUpdate();
+        
+        //Query q = session.createQuery("delete from location where loc_id = "+loc.getId());
+        session.beginTransaction();
+        session.delete(loc);
+        session.getTransaction().commit();
+        //q.executeUpdate();
     }
     public void setLocation(Location l)
     {
