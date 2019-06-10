@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fr.utbm.lo54.front.lo54_projet_front_end.backoffice;
+package fr.utbm.lo54.front.lo54_projet_front_end.backoffice.Location.Courses;
 
-import fr.utbm.lo54.front.lo54_projet_front_end.entity.Location;
-import fr.utbm.lo54.front.lo54_projet_front_end.repository.LocationDao;
+import fr.utbm.lo54.front.lo54_projet_front_end.entity.Course;
+import fr.utbm.lo54.front.lo54_projet_front_end.repository.CourseDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -20,18 +20,17 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author El Popcorn
  */
-@WebServlet(name = "ModifyLocationServlet", urlPatterns =
+@WebServlet(name = "AddCourseServlet", urlPatterns =
 {
-    "/ModifierLieu"
+    "/AjouterCours"
 })
-public class ModifyLocationServlet extends HttpServlet
+public class AddCourseServlet extends HttpServlet
 {
-    public static final String VUE = "/WEB-INF/modifyLocationForm.jsp";
-    public static final String CHAMP_ID="id";
-    public static final String CHAMP_NOMVILLE ="city";
-    public static final String IS_OK_SERVLET ="/LieuModifie";
-    public static final String IS_KO_SERVLET="/LieuPasModifie";
-    
+    public static final String VUE = "/WEB-INF/Courses/addCourseForm.jsp";
+    public static final String CHAMP_CODE ="code";
+    public static final String CHAMP_TITRE ="titre";
+    public static final String IS_OK_SERVLET ="/CoursAjoute";
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -51,10 +50,10 @@ public class ModifyLocationServlet extends HttpServlet
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"boots.css\">");
-            out.println("<title>Modification</title>");            
+            out.println("<title>Servlet AddCourseServlet</title>");            
             out.println("</head>");
             out.println("<body>");
+            out.println("<h1>Servlet AddCourseServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -75,7 +74,6 @@ public class ModifyLocationServlet extends HttpServlet
     {
         RequestDispatcher rd = this.getServletContext().getRequestDispatcher(VUE);
         rd.forward(request, response);
-        //processRequest(request, response);
     }
 
     /**
@@ -90,30 +88,35 @@ public class ModifyLocationServlet extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-        /* Récupération des champs du formulaire. */
         request.setCharacterEncoding("UTF-8"); // Pour gérer les accents mamène
-        String cityName = request.getParameter( CHAMP_NOMVILLE );
-        String idString =request.getParameter(CHAMP_ID);
-        int id = Integer.parseInt(idString);
+        String code = request.getParameter( CHAMP_CODE );
+        String titre = request.getParameter( CHAMP_TITRE );
+        
         try 
         {
-            if(!cityName.trim().equals(""))
+            if(!code.trim().equals("") && !titre.trim().equals("")  )
             {
-               LocationDao ld = new LocationDao();
-               Location l =  new Location(cityName);
-               l.setId(id);
-               
-               ld.connect();
-               ld.setLocation(l);
-               ld.disconnect(); 
-               RequestDispatcher rs =  this.getServletContext().getRequestDispatcher(IS_OK_SERVLET);
-               rs.forward(request, response);
+                CourseDao cd = new CourseDao();
+                cd.connect();
+                if(!cd.existCourseCode(code))
+                {
+                    Course c = new Course(code,titre);
+                    cd.addCourse(c);
+                    cd.disconnect(); 
+
+                    RequestDispatcher rs =  this.getServletContext().getRequestDispatcher(IS_OK_SERVLET);
+                    rs.forward(request, response);
+                }
+                else
+                {
+                    cd.disconnect();
+                    try (PrintWriter out = response.getWriter()) 
+                    {
+                        out.println("<meta http-equiv='refresh' content='2;URL=http://localhost:8080/LO54_Projet_Front_End/AjouterCours'>");//redirects after 2 seconds
+                        out.println("<h1 class=\"text-danger\">Code déjà utilisé pour un autre cours !</h1>");
+                    } 
+                }
             }
-            else
-            {
-                this.getServletContext().getRequestDispatcher(IS_KO_SERVLET).forward(request, response);
-            }
-           
         } 
         catch (Exception e) 
         {  
@@ -126,7 +129,7 @@ public class ModifyLocationServlet extends HttpServlet
                 out.println("<title>Servlet TestServlet</title>");            
                 out.println("</head>");
                 out.println("<body>");
-                out.println("<h1>Erreur lors de l'ajout du lieu</h1>");
+                out.println("<h1>Erreur lors de l'ajout du cours</h1>");
                 out.println("<div> Erreur : ");
                 out.println(e.getMessage()+"</div>");
                 out.println("<div><a href='http://localhost:8080/LO54_Projet_Front_End/index.html'> Retour à la page d'acceuil </a></div>");

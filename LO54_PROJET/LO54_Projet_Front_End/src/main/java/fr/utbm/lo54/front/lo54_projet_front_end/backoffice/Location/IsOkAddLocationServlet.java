@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fr.utbm.lo54.front.lo54_projet_front_end.backoffice;
+package fr.utbm.lo54.front.lo54_projet_front_end.backoffice.Location;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,12 +17,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author El Popcorn
  */
-@WebServlet(name = "IsOkModifyLocationServlet", urlPatterns =
-{
-    "/LieuModifie"
-})
-public class IsOkModifyLocationServlet extends HttpServlet
-{
+@WebServlet(name = "IsOkAddLocationServlet", urlPatterns = {"/LieuAjoute"})
+public class IsOkAddLocationServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,21 +30,19 @@ public class IsOkModifyLocationServlet extends HttpServlet
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
-    {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter())
-        {
+        try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-             out.println("<!DOCTYPE html>");
+            out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
             out.println(" <link rel=\"stylesheet\" type=\"text/css\" href=\"boots.css\">");
-            out.println("<title>Lieu modifié</title>");            
+            out.println("<title>Lieu ajouté</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Lieu modifié avec succés</h1>");
-            out.println("<div><a href='http://localhost:8080/LO54_Projet_Front_End/VoirLieux'> Retour à la liste des villes</a></div>");
+            out.println("<h1>Lieu ajouté avec succés</h1>");
+            out.println("<div><a href='http://localhost:8080/LO54_Projet_Front_End/AjouterUnLieu'> Retour à la page d'ajout </a></div>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -65,8 +59,7 @@ public class IsOkModifyLocationServlet extends HttpServlet
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
-    {
+            throws ServletException, IOException {
         processRequest(request, response);
     }
 
@@ -80,8 +73,7 @@ public class IsOkModifyLocationServlet extends HttpServlet
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
-    {
+            throws ServletException, IOException {
         processRequest(request, response);
     }
 
@@ -91,8 +83,7 @@ public class IsOkModifyLocationServlet extends HttpServlet
      * @return a String containing servlet description
      */
     @Override
-    public String getServletInfo()
-    {
+    public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
 

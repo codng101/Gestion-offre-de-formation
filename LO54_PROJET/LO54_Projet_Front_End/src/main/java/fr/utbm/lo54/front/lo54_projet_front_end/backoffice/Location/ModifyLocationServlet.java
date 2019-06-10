@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fr.utbm.lo54.front.lo54_projet_front_end.backoffice;
+package fr.utbm.lo54.front.lo54_projet_front_end.backoffice.Location;
 
 import fr.utbm.lo54.front.lo54_projet_front_end.entity.Location;
 import fr.utbm.lo54.front.lo54_projet_front_end.repository.LocationDao;
@@ -20,13 +20,18 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author El Popcorn
  */
-@WebServlet(name = "AddLocationServlet", urlPatterns = {"/AjouterUnLieu"})
-public class AddLocationServlet extends HttpServlet {
-    public static final String VUE = "/WEB-INF/addLocationForm.jsp";
+@WebServlet(name = "ModifyLocationServlet", urlPatterns =
+{
+    "/ModifierLieu"
+})
+public class ModifyLocationServlet extends HttpServlet
+{
+    public static final String VUE = "/WEB-INF/Location/modifyLocationForm.jsp";
+    public static final String CHAMP_ID="id";
     public static final String CHAMP_NOMVILLE ="city";
-    public static final String IS_OK_SERVLET ="/LieuAjoute";
-    public static final String IS_KO_SERVLET="/LieuPasAjoute";
-
+    public static final String IS_OK_SERVLET ="/LieuModifie";
+    public static final String IS_KO_SERVLET="/LieuPasModifie";
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -37,17 +42,19 @@ public class AddLocationServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException
+    {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        try (PrintWriter out = response.getWriter())
+        {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AddLocationServlet</title>");            
+            out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"boots.css\">");
+            out.println("<title>Modification</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet AddLocationServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -64,9 +71,11 @@ public class AddLocationServlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException
+    {
         RequestDispatcher rd = this.getServletContext().getRequestDispatcher(VUE);
         rd.forward(request, response);
+        //processRequest(request, response);
     }
 
     /**
@@ -79,18 +88,23 @@ public class AddLocationServlet extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException
+    {
         /* Récupération des champs du formulaire. */
         request.setCharacterEncoding("UTF-8"); // Pour gérer les accents mamène
         String cityName = request.getParameter( CHAMP_NOMVILLE );
+        String idString =request.getParameter(CHAMP_ID);
+        int id = Integer.parseInt(idString);
         try 
         {
             if(!cityName.trim().equals(""))
             {
                LocationDao ld = new LocationDao();
                Location l =  new Location(cityName);
+               l.setId(id);
+               
                ld.connect();
-               ld.addLocation(l);
+               ld.setLocation(l);
                ld.disconnect(); 
                RequestDispatcher rs =  this.getServletContext().getRequestDispatcher(IS_OK_SERVLET);
                rs.forward(request, response);
@@ -99,8 +113,6 @@ public class AddLocationServlet extends HttpServlet {
             {
                 this.getServletContext().getRequestDispatcher(IS_KO_SERVLET).forward(request, response);
             }
-            
-            
            
         } 
         catch (Exception e) 
@@ -130,7 +142,8 @@ public class AddLocationServlet extends HttpServlet {
      * @return a String containing servlet description
      */
     @Override
-    public String getServletInfo() {
+    public String getServletInfo()
+    {
         return "Short description";
     }// </editor-fold>
 

@@ -45,20 +45,30 @@ public class CourseDao {
     
     public Course getCourseById(String id)
     {
-        Query query = session.createQuery("from Course WHERE code = "+id);
-        return (Course)query.uniqueResult();
+        Query query = session.createQuery("from Course WHERE code =:id ");
+        query.setParameter("id",id);
+        Course c = (Course)query.uniqueResult();
+        return c;
     }
-    public void deleteCourse(String id)
+    public void deleteCourse(Course c)
     {
-        //session.delete(loc);
-        //session.flush();
-        Query q = session.createQuery("delete from Course where code = "+id);
-        q.executeUpdate();
+        session.beginTransaction();
+        session.delete(c);
+        session.getTransaction().commit();
     }
     public void setCourse(Course c)
     {
         session.beginTransaction();
         session.update(c);
         session.getTransaction().commit();
+    }
+    
+    /*
+    * Vrai si l'id existe déjà faux sinon 
+    */
+    public boolean existCourseCode(String id)
+    {
+        Course c = getCourseById(id);
+        return c != null;
     }
 }

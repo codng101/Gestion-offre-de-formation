@@ -13,5 +13,6 @@
     <property name="format_sql">true</property>
     <property name="hbm2ddl.auto">update</property>
 	<mapping class="fr.utbm.lo54.front.lo54_projet_front_end.entity.Location"/>
+	<mapping class="fr.utbm.lo54.front.lo54_projet_front_end.entity.Course"/>
   </session-factory>
 </hibernate-configuration>

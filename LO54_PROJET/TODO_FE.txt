@@ -1,5 +1,6 @@
-- Créer des locations -> JSP
-	- Modifier / supprimer location 
+- Créer des locations -> JSP DONE
+	- Modifier / supprimer location -> Tableu avec des ahref qui pointe vers combinaisaon servlet/JSP 
+						en passant en paramètre l'id/ le nom actuel DONE
 
 - Créer des cours -> JSP (form) (nécessite locations)
 	- Créer des sessions (nécessite cours)

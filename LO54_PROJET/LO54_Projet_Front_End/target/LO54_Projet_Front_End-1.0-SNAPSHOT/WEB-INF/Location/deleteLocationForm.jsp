@@ -12,7 +12,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="boots.css">
     </head>
-    <body style="margin-left: 10px">
+    <body>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href='http://localhost:8080/LO54_Projet_Front_End/index.html'>Acceuil</a></li>
@@ -20,9 +20,10 @@
               <li class="breadcrumb-item active" aria-current="page">Supression du lieu</li>
             </ol>
         </nav>
-        <h1 class="text-danger">ATTENTION, vous êtes sur le point de supprimer la ville <%= request.getParameter("city")%></h1>
-        <h2 class="text-danger">cliquez sur le bouton "supprimer" pour continuer ou cliquez sur "retour" pour revenir en arrière</h2>
+        
         <form style='margin-left: 10px;' action='SupprimerLieu' method='post' accept-charset="UTF-8">
+            <h1 class="text-danger">ATTENTION, vous êtes sur le point de supprimer la ville <%= request.getParameter("city")%></h1>
+            <h2 class="text-danger">cliquez sur le bouton "supprimer" pour continuer ou cliquez sur "retour" pour revenir en arrière</h2>
             <div class="form-group">
               <input type="hidden" class="form-control" name="city" id='city' placeholder="<%= request.getParameter("city")%>">
               <input type="hidden" id="id" name="id" value="<%= request.getParameter("id")%>">
