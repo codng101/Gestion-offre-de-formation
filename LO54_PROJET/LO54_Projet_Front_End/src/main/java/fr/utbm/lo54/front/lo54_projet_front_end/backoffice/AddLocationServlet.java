@@ -81,8 +81,8 @@ public class AddLocationServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         /* Récupération des champs du formulaire. */
+        request.setCharacterEncoding("UTF-8"); // Pour gérer les accents mamène
         String cityName = request.getParameter( CHAMP_NOMVILLE );
-        System.out.println(cityName);
         try 
         {
             if(!cityName.trim().equals(""))

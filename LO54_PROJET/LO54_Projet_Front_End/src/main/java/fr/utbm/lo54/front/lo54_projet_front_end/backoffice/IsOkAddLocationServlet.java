@@ -38,11 +38,11 @@ public class IsOkAddLocationServlet extends HttpServlet {
             out.println("<html>");
             out.println("<head>");
             out.println(" <link rel=\"stylesheet\" type=\"text/css\" href=\"boots.css\">");
-            out.println("<title>Servlet TestServlet</title>");            
+            out.println("<title>Lieu ajouté</title>");            
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Lieu ajouté avec succés</h1>");
-            out.println("<div><a href='http://localhost:8080/LO54_Projet_Front_End/index.html'> Retour à la page d'acceuil </a></div>");
+            out.println("<div><a href='http://localhost:8080/LO54_Projet_Front_End/AjouterUnLieu'> Retour à la page d'ajout </a></div>");
             out.println("</body>");
             out.println("</html>");
         }

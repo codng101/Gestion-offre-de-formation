@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
         <title>Création des lieux</title>
         <link rel="stylesheet" type="text/css" href="boots.css">
     </head>
@@ -19,7 +19,7 @@
               <li class="breadcrumb-item active" aria-current="page">Lieux</li>
             </ol>
         </nav>
-        <form style='margin-left: 10px;' action='AjouterUnLieu' method='post'>
+        <form style='margin-left: 10px;' action='AjouterUnLieu' method='post' accept-charset="UTF-8">
             <div class="form-group">
               <label for="city">Nom de la ville</label>
               <input type="text" class="form-control" name="city" id='city' placeholder="Entrez le nom de la ville...">
