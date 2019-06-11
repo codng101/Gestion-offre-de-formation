@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fr.utbm.lo54.front.lo54_projet_front_end.backoffice.Location.Courses;
+package fr.utbm.lo54.front.lo54_projet_front_end.backoffice.Courses;
 
 import fr.utbm.lo54.front.lo54_projet_front_end.entity.Course;
 import fr.utbm.lo54.front.lo54_projet_front_end.repository.CourseDao;

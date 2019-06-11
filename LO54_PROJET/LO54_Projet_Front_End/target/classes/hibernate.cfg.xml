@@ -14,5 +14,7 @@
     <property name="hbm2ddl.auto">update</property>
 	<mapping class="fr.utbm.lo54.front.lo54_projet_front_end.entity.Location"/>
 	<mapping class="fr.utbm.lo54.front.lo54_projet_front_end.entity.Course"/>
+	<mapping class="fr.utbm.lo54.front.lo54_projet_front_end.entity.Sessions"/>
+	<mapping class="fr.utbm.lo54.front.lo54_projet_front_end.entity.Client"/>
   </session-factory>
 </hibernate-configuration>

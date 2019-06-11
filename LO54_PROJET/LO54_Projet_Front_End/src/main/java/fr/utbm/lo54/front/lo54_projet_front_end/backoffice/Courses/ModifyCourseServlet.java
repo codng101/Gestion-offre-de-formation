@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fr.utbm.lo54.front.lo54_projet_front_end.backoffice.Location.Courses;
+package fr.utbm.lo54.front.lo54_projet_front_end.backoffice.Courses;
 
 import fr.utbm.lo54.front.lo54_projet_front_end.entity.Course;
 import fr.utbm.lo54.front.lo54_projet_front_end.repository.CourseDao;
@@ -20,16 +20,16 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author El Popcorn
  */
-@WebServlet(name = "DeleteCourseServlet", urlPatterns =
+@WebServlet(name = "ModifyCourseServlet", urlPatterns =
 {
-    "/SupprimerCours"
+    "/ModifierCours"
 })
-public class DeleteCourseServlet extends HttpServlet
+public class ModifyCourseServlet extends HttpServlet
 {
-    
-    public static final String VUE = "/WEB-INF/Courses/deleteCourseForm.jsp";
-    public static final String CHAMP_TITRE="titre";
+    public static final String VUE = "/WEB-INF/Courses/modifyCourseForm.jsp";
     public static final String CHAMP_CODE ="code";
+    public static final String CHAMP_TITRE ="titre";
+    public static final String IS_OK_SERVLET ="/CoursModifie";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -50,10 +50,10 @@ public class DeleteCourseServlet extends HttpServlet
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet DeleteCourseServlet</title>");            
+            out.println("<title>Servlet ModifyCourseServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet DeleteCourseServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ModifyCourseServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -88,20 +88,31 @@ public class DeleteCourseServlet extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
+        /* Récupération des champs du formulaire. */
         request.setCharacterEncoding("UTF-8"); // Pour gérer les accents mamène
-        String titre = request.getParameter( CHAMP_TITRE );
-        String code =request.getParameter(CHAMP_CODE);
+        String code = request.getParameter( CHAMP_CODE );
+        String titre =request.getParameter(CHAMP_TITRE);
         try 
         {
-               CourseDao cd = new CourseDao();
-               cd.connect();
-               Course c = cd.getCourseById(code);
-               
-               cd.deleteCourse(c);
-               cd.disconnect(); 
-               
-               RequestDispatcher rs =  this.getServletContext().getRequestDispatcher("/MontrerCours");
-               rs.forward(request, response);
+            CourseDao cd = new CourseDao();
+            if(!titre.trim().equals(""))
+            {
+                Course c = new Course(code,titre);
+                cd.connect();
+                cd.setCourse(c);
+                cd.disconnect();
+                RequestDispatcher rs =  this.getServletContext().getRequestDispatcher(IS_OK_SERVLET);
+                rs.forward(request, response);
+            }
+            else
+            {
+                try (PrintWriter out = response.getWriter()) 
+                {
+                    out.println("<meta http-equiv='refresh' content='2;URL=http://localhost:8080/LO54_Projet_Front_End/AjouterCours'>");//redirects after 2 seconds
+                    out.println("<h1 class=\"text-danger\">Le titre ne peut être vide !</h1>");
+                } 
+            }
+           
         } 
         catch (Exception e) 
         {  
@@ -111,10 +122,10 @@ public class DeleteCourseServlet extends HttpServlet
                 out.println("<html>");
                 out.println("<head>");
                 out.println(" <link rel=\"stylesheet\" type=\"text/css\" href=\"boots.css\">");
-                out.println("<title>Erreur suppression</title>");            
+                out.println("<title>Servlet TestServlet</title>");            
                 out.println("</head>");
                 out.println("<body>");
-                out.println("<h1>Erreur lors de la suppression du cours</h1>");
+                out.println("<h1>Erreur lors de l'ajout du lieu</h1>");
                 out.println("<div> Erreur : ");
                 out.println(e.getMessage()+"</div>");
                 out.println("<div><a href='http://localhost:8080/LO54_Projet_Front_End/index.html'> Retour à la page d'acceuil </a></div>");

@@ -2,8 +2,9 @@
 	- Modifier / supprimer location -> Tableu avec des ahref qui pointe vers combinaisaon servlet/JSP 
 						en passant en paramètre l'id/ le nom actuel DONE
 
-- Créer des cours -> JSP (form) (nécessite locations)
-	- Créer des sessions (nécessite cours)
+- Créer des cours -> JSP (form) DONE
+	- Modifier /supprimer cours DONE
+	- Créer des sessions (nécessite cours + nécessite locations)
 
 - S'inscrire aux sessions disponibles -> Servlet à part
 	- Lors de l'inscription, vérifier que le client n'est pas déjà inscrit à la même heure autre part
