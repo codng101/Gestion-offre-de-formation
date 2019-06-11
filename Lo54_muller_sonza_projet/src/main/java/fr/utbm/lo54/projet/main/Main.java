@@ -5,10 +5,11 @@
  */
 package fr.utbm.lo54.projet.main;
 
-import org.hibernate.cfg.AnnotationConfiguration;
-import fr.utbm.lo54.projet.entity.*;
+import fr.utbm.lo54.projet.entity.Course;
+import fr.utbm.lo54.projet.entity.Sessions;
 import fr.utbm.lo54.projet.repository.CourseDao;
-import org.hibernate.tool.hbm2ddl.SchemaExport;
+import fr.utbm.lo54.projet.repository.LocationDao;
+import fr.utbm.lo54.projet.repository.SessionsDao;
 /**
  *
  * @author vsonza
@@ -30,12 +31,23 @@ public class Main {
 //        //conf.addClass(Course.class);
 //        conf.configure("hibernate.cfg.xml");
         //new SchemaExport(conf).create(true,true);
-        Course c=new Course("LO54","LO54");
+        Course c=new Course("LO51","LO51");
         CourseDao CDao=new CourseDao();
+        LocationDao ldao=new LocationDao();
+        SessionsDao sdao=new SessionsDao();
+        Sessions s=new Sessions();
+        sdao.connect();
+        sdao.addSessions(s);
+        sdao.disconnect();
+        //ldao.connect();
+        //Location l=new Location("belfort");
+        //ldao.addLocation(l);
+        //ldao.disconnect();
+        
         CDao.connect();
-        CDao.addCourse(c);
+        //CDao.addCourse(c);
         CDao.getAllCourses();
-        System.out.print(CDao.getAllCourses());
+        System.out.print(CDao.getCourseById("LO54"));
         CDao.disconnect();
     }
     

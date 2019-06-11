@@ -67,11 +67,13 @@ public class Sessions implements Serializable
     public Sessions() {
     }
 
-    public Sessions(Date startDate, Date endDate, int max) 
+    public Sessions(Date startDate, Date endDate, int max, Course c, Location l) 
     {
         this.startDate = startDate;
         this.endDate = endDate;
         this.maximum = max;
+        this.crs=c;
+        this.loc=l;
     }
     
     public Sessions(int id, Date startDate, Date endDate, int max) {

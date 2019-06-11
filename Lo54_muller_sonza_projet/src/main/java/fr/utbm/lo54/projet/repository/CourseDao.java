@@ -45,14 +45,14 @@ public class CourseDao {
     
     public Course getCourseById(String id)
     {
-        Query query = session.createQuery("from Course WHERE code = "+id);
+        Query query = session.createQuery("from Course WHERE CODE = '" + id+"'");
         return (Course)query.uniqueResult();
     }
     public void deleteCourse(String id)
     {
         //session.delete(loc);
         //session.flush();
-        Query q = session.createQuery("delete from Course where code = "+id);
+        Query q = session.createQuery("delete from Course where code = '"+id+"'");
         q.executeUpdate();
     }
     public void setCourse(Course c)
