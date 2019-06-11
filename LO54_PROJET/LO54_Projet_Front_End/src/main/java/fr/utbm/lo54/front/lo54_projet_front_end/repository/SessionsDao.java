@@ -38,7 +38,7 @@ public class SessionsDao {
     }
     public List<Sessions> getAllSessionss()
     {
-        Query query = session.createQuery("from UD_Session");
+        Query query = session.createQuery("from Sessions");
         List<Sessions> ses = query.list();
         
         return ses;
@@ -46,14 +46,14 @@ public class SessionsDao {
     
     public Sessions getSessionsById(int id)
     {
-        Query query = session.createQuery("from UD_Session WHERE session_id = "+id);
+        Query query = session.createQuery("from Sessions WHERE session_id = "+id);
         return (Sessions)query.uniqueResult();
     }
     public void deleteSessions(int id)
     {
         //session.delete(loc);
         //session.flush();
-        Query q = session.createQuery("delete from UD_Session where session_id = "+id);
+        Query q = session.createQuery("delete from Sessions where session_id = "+id);
         q.executeUpdate();
     }
     public void setSessions(Sessions s)

@@ -18,11 +18,11 @@ public class Sessions implements Serializable
     private Date startDate;
     private Date endDate;
     private int maximum;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="loc_id")
     private Location loc;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="code")
     private Course crs;
 

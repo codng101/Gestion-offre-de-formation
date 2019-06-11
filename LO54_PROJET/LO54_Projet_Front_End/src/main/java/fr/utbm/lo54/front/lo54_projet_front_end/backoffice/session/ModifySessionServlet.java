@@ -14,11 +14,9 @@ import fr.utbm.lo54.front.lo54_projet_front_end.repository.SessionsDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Time;
-import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -30,17 +28,17 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Victor
  */
-@WebServlet(name = "AddSessionServlet", urlPatterns = {"/AjouterSession"})
-public class AddSessionServlet extends HttpServlet {
+@WebServlet(name = "ModifySessionServlet", urlPatterns = {"/ModifierSession"})
+public class ModifySessionServlet extends HttpServlet
+{
 
-    public static final String VUE = "/WEB-INF/Session/addSessionForm.jsp";
-    public static final String CHAMP_COURS = "courseList";
-    public static final String CHAMP_LIEU = "locationList";
+    public static final String VUE = "/WEB-INF/Session/modifySessionForm.jsp";
+    public static final String CHAMP_ID = "idSession";
     public static final String CHAMP_HDEB = "heureDeb";
     public static final String CHAMP_HFIN = "heureFin";
     public static final String CHAMP_NBMAX = "nbMax";
-    public static final String IS_OK_SERVLET ="/SessionAjoutee";
-    
+    public static final String IS_OK_SERVLET = "/SessionModifiee";
+            
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -52,16 +50,16 @@ public class AddSessionServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("text/html;charset=UTF-8");        
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AddSessionServlet</title>");            
+            out.println("<title>Servlet ModifySessionServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet AddSessionServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ModifySessionServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -80,25 +78,21 @@ public class AddSessionServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException 
     {
-        // on va récupérer dans un premier temps les cours qui existent
-        CourseDao cd = new CourseDao();
-        cd.connect();
-        List<Course> courses = cd.getAllCourses();
-        cd.disconnect();
+        String sessId = request.getParameter("id");
+        SessionsDao sd = new SessionsDao();
+        sd.connect();
+        Sessions s = sd.getSessionsById(Integer.parseInt(sessId));
+        sd.disconnect();
         
-        // ensuite les lieux
-        LocationDao ld = new LocationDao();
-        ld.connect();
-        List<Location> locations = ld.getAllLocations();
-        ld.disconnect();
-        
-        // on met tout ça dans la requête
-        request.setAttribute("courses",courses);
-        request.setAttribute("locations", locations);
+        request.setAttribute("course", s.getCrs());
+        request.setAttribute("location",s.getLoc());
+        request.setAttribute("sessionId",s.getId());
+        request.setAttribute("sessionStart",(s.getStartDate().getHours()+":"+s.getStartDate().getMinutes()));
+        request.setAttribute("sessionStop",(s.getEndDate().getHours()+":"+s.getEndDate().getMinutes()));
+        request.setAttribute("sessionSize",s.getMax());
         
         // Et on relaie à la page JSP
         request.getRequestDispatcher(VUE).forward(request,response);
-        
     }
 
     /**
@@ -113,47 +107,45 @@ public class AddSessionServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException 
     {
+        
         request.setCharacterEncoding("UTF-8"); // Pour gérer les accents mamène
-        String courseId = request.getParameter(CHAMP_COURS);
-        String locationId = request.getParameter(CHAMP_LIEU);
+        String sessId = request.getParameter(CHAMP_ID);
+        int id = Integer.parseInt(sessId);
         String heureDeb = request.getParameter(CHAMP_HDEB);
         String heureFin = request.getParameter(CHAMP_HFIN);
         String nbMax = request.getParameter(CHAMP_NBMAX);
         
         try 
         {
-            if(!courseId.trim().equals("") && !locationId.trim().equals("") && !heureDeb.trim().equals("") && !heureFin.trim().equals("")&& !nbMax.trim().equals(""))
-            {
-                CourseDao cd = new CourseDao();
-                cd.connect();
-                Course c = cd.getCourseById(courseId);
-                cd.disconnect();
-                
-                LocationDao ld = new LocationDao();
-                ld.connect();
-                int lId = Integer.parseInt(locationId);
-                Location l = ld.getLocationById(lId);
-                ld.disconnect();
-                
+            if(!heureDeb.trim().equals("") && !heureFin.trim().equals("")&& !nbMax.trim().equals(""))
+            {         
                 DateFormat formatter = new SimpleDateFormat("HH:mm");
                 
                 Time tDeb = new Time(formatter.parse(heureDeb).getTime());
                 Date dDeb = new Date();
                 dDeb.setTime(tDeb.getTime());
                 
-                
                 Time tFin = new Time(formatter.parse(heureFin).getTime());
                 Date dFin = new Date();
                 dFin.setTime(tFin.getTime());
+                
+                if(dFin.before(dDeb))
+                {
+                    Date temp = dDeb;
+                    dDeb = dFin;
+                    dFin = temp;
+                }
                 
                 int nMax = Integer.parseInt(nbMax);
                 
                 // On ajoute la session
                 SessionsDao sd = new SessionsDao();
                 sd.connect();
-                Sessions s = new Sessions(dDeb,dFin,nMax,c,l);
-                
-                sd.addSessions(s);
+                Sessions s = sd.getSessionsById(id);
+                s.setStartDate(dDeb);
+                s.setEndDate(dFin);
+                s.setMax(nMax);
+                sd.setSessions(s);
                 sd.disconnect();
                 
                 RequestDispatcher rs =  this.getServletContext().getRequestDispatcher(IS_OK_SERVLET);

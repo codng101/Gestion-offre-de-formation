@@ -23,7 +23,7 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href='http://localhost:8080/LO54_Projet_Front_End/index.html'>Acceuil</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Sessions</li>
+              <li class="breadcrumb-item active" aria-current="page">Ajout de session</li>
             </ol>
         </nav>
                 
