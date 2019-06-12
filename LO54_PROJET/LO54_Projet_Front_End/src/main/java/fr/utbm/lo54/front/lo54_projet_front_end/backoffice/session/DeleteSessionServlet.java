@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fr.utbm.lo54.front.lo54_projet_front_end.backoffice.Courses;
+package fr.utbm.lo54.front.lo54_projet_front_end.backoffice.session;
 
-import fr.utbm.lo54.front.lo54_projet_front_end.entity.Course;
-import fr.utbm.lo54.front.lo54_projet_front_end.repository.CourseDao;
+import fr.utbm.lo54.front.lo54_projet_front_end.entity.Sessions;
+import fr.utbm.lo54.front.lo54_projet_front_end.repository.SessionsDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -18,19 +18,13 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author El Popcorn
+ * @author Victor
  */
-@WebServlet(name = "DeleteCourseServlet", urlPatterns =
+@WebServlet(name = "DeleteSessionServlet", urlPatterns = {"/SupprimerSession"})
+public class DeleteSessionServlet extends HttpServlet 
 {
-    "/SupprimerCours"
-})
-public class DeleteCourseServlet extends HttpServlet
-{
-    
-    public static final String VUE = "/WEB-INF/Courses/deleteCourseForm.jsp";
-    public static final String CHAMP_TITRE="titre";
-    public static final String CHAMP_CODE ="code";
 
+    public static final String VUE = "/WEB-INF/Session/deleteSessionForm.jsp";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -41,19 +35,17 @@ public class DeleteCourseServlet extends HttpServlet
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
-    {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter())
-        {
+        try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet DeleteCourseServlet</title>");            
+            out.println("<title>Servlet DeleteSessionServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet DeleteCourseServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet DeleteSessionServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -70,10 +62,11 @@ public class DeleteCourseServlet extends HttpServlet
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
+            throws ServletException, IOException 
     {
-        RequestDispatcher rd = this.getServletContext().getRequestDispatcher(VUE);
-        rd.forward(request, response);
+        int sessionId = Integer.parseInt(request.getParameter("id"));
+        request.setAttribute("sessionId", sessionId);
+        request.getRequestDispatcher(VUE).forward(request,response);
     }
 
     /**
@@ -86,21 +79,18 @@ public class DeleteCourseServlet extends HttpServlet
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
+            throws ServletException, IOException 
     {
-        request.setCharacterEncoding("UTF-8"); // Pour gérer les accents mamène
-        String code =request.getParameter(CHAMP_CODE);
-        try 
+        try
         {
-               CourseDao cd = new CourseDao();
-               cd.connect();
-               Course c = cd.getCourseById(code);
-               
-               cd.deleteCourse(c);
-               cd.disconnect(); 
-               
-               RequestDispatcher rs =  this.getServletContext().getRequestDispatcher("/MontrerCours");
-               rs.forward(request, response);
+            String sessIdString = request.getParameter("sessionId");
+            int sessId = Integer.parseInt(sessIdString.trim());
+            SessionsDao sd = new SessionsDao();
+            sd.connect();
+            sd.deleteSessions(sessId);
+            sd.disconnect();
+            RequestDispatcher rs =  this.getServletContext().getRequestDispatcher("/VoirSessions");
+            rs.forward(request, response);
         } 
         catch (Exception e) 
         {  
@@ -110,10 +100,10 @@ public class DeleteCourseServlet extends HttpServlet
                 out.println("<html>");
                 out.println("<head>");
                 out.println(" <link rel=\"stylesheet\" type=\"text/css\" href=\"boots.css\">");
-                out.println("<title>Erreur suppression</title>");            
+                out.println("<title>Erreur lors de la supression</title>");            
                 out.println("</head>");
                 out.println("<body>");
-                out.println("<h1>Erreur lors de la suppression du cours</h1>");
+                out.println("<h1>Erreur lors de la suppression de la session</h1>");
                 out.println("<div> Erreur : ");
                 out.println(e.getMessage()+"</div>");
                 out.println("<div><a href='http://localhost:8080/LO54_Projet_Front_End/index.html'> Retour à la page d'acceuil </a></div>");
@@ -129,8 +119,7 @@ public class DeleteCourseServlet extends HttpServlet
      * @return a String containing servlet description
      */
     @Override
-    public String getServletInfo()
-    {
+    public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
 

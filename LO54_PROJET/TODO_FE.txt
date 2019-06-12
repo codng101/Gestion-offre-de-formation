@@ -4,7 +4,9 @@
 
 - Créer des cours -> JSP (form) DONE
 	- Modifier /supprimer cours DONE
-	- Créer des sessions (nécessite cours + nécessite locations)
+
+- Créer des sessions (nécessite cours + nécessite locations) DONE
+	- Modifier /supprimer session DONE
 
 - S'inscrire aux sessions disponibles -> Servlet à part
 	- Lors de l'inscription, vérifier que le client n'est pas déjà inscrit à la même heure autre part

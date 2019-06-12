@@ -104,7 +104,7 @@ public class DisplaySessionsServlet extends HttpServlet {
                                 out.println("<a href='http://localhost:8080/LO54_Projet_Front_End/ModifierSession?id="+ses.getId()+"'>Modifier</a>");
                             out.println("</td>");
                             out.println("<td>");
-                                out.println("<a href='http://localhost:8080/LO54_Projet_Front_End/SupprimerLieu?id="+ses.getId()+"'>Supprimer</a>");
+                                out.println("<a href='http://localhost:8080/LO54_Projet_Front_End/SupprimerSession?id="+ses.getId()+"'>Supprimer</a>");
                             out.println("</td>");
                         out.println("</tr>");
                     }
