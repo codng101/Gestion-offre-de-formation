@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fr.utbm.lo54.front.lo54_projet_front_end.backoffice.Courses;
+package fr.utbm.lo54.front.lo54_projet_front_end.backoffice.Client;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,14 +15,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author El Popcorn
+ * @author Victor
  */
-@WebServlet(name = "IsOkCoursModifie", urlPatterns =
-{
-    "/CoursModifie"
-})
-public class IsOkCoursModifie extends HttpServlet
-{
+@WebServlet(name = "IsOkAddClient", urlPatterns = {"/ClientAjoute"})
+public class IsOkAddClient extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,20 +30,19 @@ public class IsOkCoursModifie extends HttpServlet
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
-    {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter())
-        {
-           out.println("<!DOCTYPE html>");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
             out.println(" <link rel=\"stylesheet\" type=\"text/css\" href=\"boots.css\">");
-            out.println("<title>Cours modifié</title>");            
+            out.println("<title>Client ajouté</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Cours modifié avec succés</h1>");
-            out.println("<div><a href='http://localhost:8080/LO54_Projet_Front_End/VoirCours'> Retour à la liste de cours </a></div>");
+            out.println("<h1>Client ajouté avec succés</h1>");
+            out.println("<div><a href='http://localhost:8080/LO54_Projet_Front_End/AjouterClient'> Retour à la page d'ajout </a></div>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -64,8 +59,7 @@ public class IsOkCoursModifie extends HttpServlet
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
-    {
+            throws ServletException, IOException {
         processRequest(request, response);
     }
 
@@ -79,8 +73,7 @@ public class IsOkCoursModifie extends HttpServlet
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
-    {
+            throws ServletException, IOException {
         processRequest(request, response);
     }
 
@@ -90,8 +83,7 @@ public class IsOkCoursModifie extends HttpServlet
      * @return a String containing servlet description
      */
     @Override
-    public String getServletInfo()
-    {
+    public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
 

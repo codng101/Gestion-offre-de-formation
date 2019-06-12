@@ -49,6 +49,15 @@ public class Client implements Serializable
         this.phone = phone;
         this.email = email;
     }
+    
+    public Client(String lastname, String firstname, String address, String phone, String email) 
+    {
+        this.lastname = lastname;
+        this.firstname = firstname;
+        this.address = address;
+        this.phone = phone;
+        this.email = email;
+    }
 
     public String getLastname() {
         return lastname;

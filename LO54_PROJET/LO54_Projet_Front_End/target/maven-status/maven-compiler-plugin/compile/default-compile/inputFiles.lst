@@ -1,10 +1,13 @@
+D:\_UTBM\S4\LO54\Projet_JAVA\Gestion-offre-de-formation\LO54_PROJET\LO54_Projet_Front_End\src\main\java\fr\utbm\lo54\front\lo54_projet_front_end\backoffice\Client\IsOkAddClient.java
 D:\_UTBM\S4\LO54\Projet_JAVA\Gestion-offre-de-formation\LO54_PROJET\LO54_Projet_Front_End\src\main\java\fr\utbm\lo54\front\lo54_projet_front_end\entity\Sessions.java
 D:\_UTBM\S4\LO54\Projet_JAVA\Gestion-offre-de-formation\LO54_PROJET\LO54_Projet_Front_End\src\main\java\fr\utbm\lo54\front\lo54_projet_front_end\backoffice\Location\IsKoAddLocationServlet.java
 D:\_UTBM\S4\LO54\Projet_JAVA\Gestion-offre-de-formation\LO54_PROJET\LO54_Projet_Front_End\src\main\java\fr\utbm\lo54\front\lo54_projet_front_end\repository\SessionsDao.java
 D:\_UTBM\S4\LO54\Projet_JAVA\Gestion-offre-de-formation\LO54_PROJET\LO54_Projet_Front_End\src\main\java\fr\utbm\lo54\front\lo54_projet_front_end\entity\Location.java
 D:\_UTBM\S4\LO54\Projet_JAVA\Gestion-offre-de-formation\LO54_PROJET\LO54_Projet_Front_End\src\main\java\fr\utbm\lo54\front\lo54_projet_front_end\backoffice\session\IsOkModifySessionServlet.java
+D:\_UTBM\S4\LO54\Projet_JAVA\Gestion-offre-de-formation\LO54_PROJET\LO54_Projet_Front_End\src\main\java\fr\utbm\lo54\front\lo54_projet_front_end\backoffice\Client\DisplayClientsServlet.java
 D:\_UTBM\S4\LO54\Projet_JAVA\Gestion-offre-de-formation\LO54_PROJET\LO54_Projet_Front_End\src\main\java\fr\utbm\lo54\front\lo54_projet_front_end\backoffice\Courses\ModifyCourseServlet.java
 D:\_UTBM\S4\LO54\Projet_JAVA\Gestion-offre-de-formation\LO54_PROJET\LO54_Projet_Front_End\src\main\java\fr\utbm\lo54\front\lo54_projet_front_end\backoffice\Location\DeleteLocationServlet.java
+D:\_UTBM\S4\LO54\Projet_JAVA\Gestion-offre-de-formation\LO54_PROJET\LO54_Projet_Front_End\src\main\java\fr\utbm\lo54\front\lo54_projet_front_end\backoffice\Client\AddClientServlet.java
 D:\_UTBM\S4\LO54\Projet_JAVA\Gestion-offre-de-formation\LO54_PROJET\LO54_Projet_Front_End\src\main\java\fr\utbm\lo54\front\lo54_projet_front_end\backoffice\Courses\IsOkAddCourseServlet.java
 D:\_UTBM\S4\LO54\Projet_JAVA\Gestion-offre-de-formation\LO54_PROJET\LO54_Projet_Front_End\src\main\java\fr\utbm\lo54\front\lo54_projet_front_end\backoffice\session\ModifySessionServlet.java
 D:\_UTBM\S4\LO54\Projet_JAVA\Gestion-offre-de-formation\LO54_PROJET\LO54_Projet_Front_End\src\main\java\fr\utbm\lo54\front\lo54_projet_front_end\backoffice\Location\AddLocationServlet.java

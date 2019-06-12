@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "DisplayCoursesServlet", urlPatterns =
 {
-    "/MontrerCours"
+    "/VoirCours"
 })
 public class DisplayCoursesServlet extends HttpServlet
 {
@@ -83,6 +83,8 @@ public class DisplayCoursesServlet extends HttpServlet
                             out.println("</td>");
                             out.println("<td>");
                                 out.println("<a href='http://localhost:8080/LO54_Projet_Front_End/ModifierCours?code="+cours.getCode()+"&titre="+cours.getTitle()+"'>Modifier</a>");
+                            out.println("</td>");
+                            out.println("<td>");
                                 out.println("<a href='http://localhost:8080/LO54_Projet_Front_End/SupprimerCours?code="+cours.getCode()+"&titre="+cours.getTitle()+"'>Supprimer</a>");
                             out.println("</td>");
                         out.println("</tr>");

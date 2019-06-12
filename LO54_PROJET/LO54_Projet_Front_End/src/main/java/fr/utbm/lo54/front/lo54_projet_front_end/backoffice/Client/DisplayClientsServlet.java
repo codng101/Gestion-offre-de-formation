@@ -3,10 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fr.utbm.lo54.front.lo54_projet_front_end.backoffice.Location;
+package fr.utbm.lo54.front.lo54_projet_front_end.backoffice.Client;
 
-import fr.utbm.lo54.front.lo54_projet_front_end.entity.Location;
-import fr.utbm.lo54.front.lo54_projet_front_end.repository.LocationDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -14,17 +12,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import fr.utbm.lo54.front.lo54_projet_front_end.repository.ClientDao;
+import fr.utbm.lo54.front.lo54_projet_front_end.entity.Client;
 import java.util.List;
 /**
  *
- * @author El Popcorn
+ * @author Victor
  */
-@WebServlet(name = "DisplayLocationsServlet", urlPatterns =
-{
-    "/VoirLieux"
-})
-public class DisplayLocationsServlet extends HttpServlet
-{
+@WebServlet(name = "DisplayClientsServlet", urlPatterns = {"/VoirClients"})
+public class DisplayClientsServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,16 +32,15 @@ public class DisplayLocationsServlet extends HttpServlet
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
-    {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter())
+        try (PrintWriter out = response.getWriter()) 
         {
-            LocationDao lDao = new LocationDao();
-            lDao.connect();
-            List<Location> locations = lDao.getAllLocations();
-            lDao.disconnect();
-            /* TODO output your page here. You may use following sample code. */
+            ClientDao cd = new ClientDao();
+            cd.connect();
+            List<Client> clients = cd.getAllClients();
+            cd.disconnect();
+            
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
@@ -56,36 +51,39 @@ public class DisplayLocationsServlet extends HttpServlet
             out.println("<nav aria-label=\"breadcrumb\">");
                 out.println("<ol class=\"breadcrumb\">");
                     out.println("<li class=\"breadcrumb-item\"><a href='http://localhost:8080/LO54_Projet_Front_End/index.html'>Acceuil</a></li>");
-                    out.println("<li class=\"breadcrumb-item active\" aria-current=\"page\">Liste des lieux</li>");
+                    out.println("<li class=\"breadcrumb-item active\" aria-current=\"page\">Liste des clients</li>");
                 out.println("</ol>");
             out.println("</nav>");
             
             out.println("<table class=\"table\">");
                 out.println("<thead class=\"thead-light\">");
                     out.println("<tr> ");
-                        out.println("<th scope=\"col\" align='center'>Id</th>");
-                        out.println("<th scope=\"col\" >Nom de la ville</th>");
+                        out.println("<th scope=\"col\" align='center'>Nom</th>");
+                        out.println("<th scope=\"col\" >Prénom</th>");
+                        out.println("<th scope=\"col\" >Email</th>");
                         out.println("<th scope=\"col\" > </th>");
                         out.println("<th scope=\"col\" > </th>");
                     out.println("</tr>");
                 out.println("</thead>");
                 out.println("<tbody>");
-                    for (Location location : locations)
+                    for (Client cli : clients)
                     {
                         out.println("<tr>");
                             out.println("<td align='center'>");
-                                out.println(location.getId());
+                                out.println(cli.getLastname());
                             out.println("</td>");
                             out.println("<td>");
-                                out.println(location.getCity());                        
+                                out.println(cli.getFirstname());                        
                             out.println("</td>");
                             out.println("<td>");
-                                out.println("<a href='http://localhost:8080/LO54_Projet_Front_End/ModifierLieu?id="+location.getId()+"&city="+location.getCity()+"'>Modifier</a>");
+                                out.println(cli.getEmail());
                             out.println("</td>");
                             out.println("<td>");
-                                out.println("<a href='http://localhost:8080/LO54_Projet_Front_End/SupprimerLieu?id="+location.getId()+"&city="+location.getCity()+"'>Supprimer</a>");
+                                out.println("<a href='http://localhost:8080/LO54_Projet_Front_End/ModifierClient?id="+cli.getID()+"'>Modifier</a>");
                             out.println("</td>");
-                            
+                            out.println("<td>");
+                                out.println("<a href='http://localhost:8080/LO54_Projet_Front_End/SupprimerClient?code="+cli.getID()+"'>Supprimer</a>");
+                            out.println("</td>");
                         out.println("</tr>");
                     }
                 out.println("</tbody>");
@@ -104,8 +102,7 @@ public class DisplayLocationsServlet extends HttpServlet
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
-    {
+            throws ServletException, IOException {
         processRequest(request, response);
     }
 
@@ -119,8 +116,7 @@ public class DisplayLocationsServlet extends HttpServlet
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
-    {
+            throws ServletException, IOException {
         processRequest(request, response);
     }
 
@@ -130,8 +126,7 @@ public class DisplayLocationsServlet extends HttpServlet
      * @return a String containing servlet description
      */
     @Override
-    public String getServletInfo()
-    {
+    public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
 

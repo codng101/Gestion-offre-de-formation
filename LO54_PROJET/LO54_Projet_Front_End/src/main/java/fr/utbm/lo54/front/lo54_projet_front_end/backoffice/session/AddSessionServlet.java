@@ -164,8 +164,8 @@ public class AddSessionServlet extends HttpServlet {
             {
                     try (PrintWriter out = response.getWriter()) 
                     {
-                        out.println("<meta http-equiv='refresh' content='2;URL=http://localhost:8080/LO54_Projet_Front_End/AjouterCours'>");//redirects after 2 seconds
-                        out.println("<h1 class=\"text-danger\">Code déjà utilisé pour un autre cours !</h1>");
+                        out.println("<meta http-equiv='refresh' content='2;URL=http://localhost:8080/LO54_Projet_Front_End/AjouterSession'>");//redirects after 2 seconds
+                        out.println("<h1 class=\"text-danger\">Au moins un des champs été vide!</h1>");
                     } 
             }
             

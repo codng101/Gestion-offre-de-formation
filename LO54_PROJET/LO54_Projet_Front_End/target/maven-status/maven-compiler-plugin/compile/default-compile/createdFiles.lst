@@ -3,11 +3,14 @@ fr\utbm\lo54\front\lo54_projet_front_end\backoffice\Courses\IsOkAddCourseServlet
 fr\utbm\lo54\front\lo54_projet_front_end\backoffice\session\AddSessionServlet.class
 fr\utbm\lo54\front\lo54_projet_front_end\backoffice\Courses\DisplayCoursesServlet.class
 fr\utbm\lo54\front\lo54_projet_front_end\entity\Client.class
+fr\utbm\lo54\front\lo54_projet_front_end\backoffice\Client\DisplayClientsServlet.class
 fr\utbm\lo54\front\lo54_projet_front_end\backoffice\Location\DeleteLocationServlet.class
 fr\utbm\lo54\front\lo54_projet_front_end\backoffice\Location\DisplayLocationsServlet.class
 fr\utbm\lo54\front\lo54_projet_front_end\backoffice\session\DeleteSessionServlet.class
+fr\utbm\lo54\front\lo54_projet_front_end\backoffice\Client\AddClientServlet.class
 fr\utbm\lo54\front\lo54_projet_front_end\backoffice\Location\IsOkModifyLocationServlet.class
 fr\utbm\lo54\front\lo54_projet_front_end\backoffice\Location\AddLocationServlet.class
+fr\utbm\lo54\front\lo54_projet_front_end\backoffice\Client\IsOkAddClient.class
 fr\utbm\lo54\front\lo54_projet_front_end\backoffice\Location\IsKoAddLocationServlet.class
 fr\utbm\lo54\front\lo54_projet_front_end\repository\CourseDao.class
 fr\utbm\lo54\front\lo54_projet_front_end\backoffice\session\IsOkAddSessionServlet.class
