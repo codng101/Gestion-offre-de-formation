@@ -5,8 +5,11 @@
  */
 package fr.utbm.lo54.projet.main;
 
+import fr.utbm.lo54.projet.entity.Client;
 import fr.utbm.lo54.projet.entity.Course;
 import fr.utbm.lo54.projet.entity.Sessions;
+import fr.utbm.lo54.projet.jasperReport.GeneratePDF;
+import fr.utbm.lo54.projet.repository.ClientDao;
 import fr.utbm.lo54.projet.repository.CourseDao;
 import fr.utbm.lo54.projet.repository.LocationDao;
 import fr.utbm.lo54.projet.repository.SessionsDao;
@@ -35,15 +38,22 @@ public class Main {
         CourseDao CDao=new CourseDao();
         LocationDao ldao=new LocationDao();
         SessionsDao sdao=new SessionsDao();
+        ClientDao cd=new ClientDao();
+        Client cl=new Client();
         Sessions s=new Sessions();
         sdao.connect();
         sdao.addSessions(s);
         sdao.disconnect();
+        cd.connect();
+        cd.addClient(cl);
+        cd.disconnect();
         //ldao.connect();
         //Location l=new Location("belfort");
         //ldao.addLocation(l);
         //ldao.disconnect();
-        
+        GeneratePDF g=new GeneratePDF();
+        g.ListeClient();
+        g.ListeCourse();
         CDao.connect();
         //CDao.addCourse(c);
         CDao.getAllCourses();

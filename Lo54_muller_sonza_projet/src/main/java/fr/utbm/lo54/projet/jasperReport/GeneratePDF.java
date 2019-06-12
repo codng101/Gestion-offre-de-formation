@@ -25,12 +25,12 @@ import org.apache.derby.jdbc.*;
 
 public class GeneratePDF {
 
-    public static void main(String[] args) {
+    public  void ListeClient() {
 
         // - Paramètres de connexion à la base de données
         String url = "jdbc:derby://localhost:1527/courses";
-        String login = "courses";
-        String password = "courses";
+        String login = "Courses";
+        String password = "Courses";
         Connection connection = null;
 
         try {
@@ -40,7 +40,7 @@ public class GeneratePDF {
             connection = DriverManager.getConnection(url, login, password);
 
             // - Chargement et compilation du rapport
-            JasperDesign jasperDesign = JRXmlLoader.load("D:\\iReport-1.2.1\\classic.jrxml");
+            JasperDesign jasperDesign = JRXmlLoader.load("C:\\Users\\gmulle01\\Documents\\GitHub\\Gestion-offre-de-formation\\jasperReportFile\\ListeClient.jrxml");
             JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
 
             // - Paramètres à envoyer au rapport
@@ -51,7 +51,51 @@ public class GeneratePDF {
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, connection);
 
             // - Création du rapport au format PDF
-            JasperExportManager.exportReportToPdfFile(jasperPrint, "D:\\iReport-1.2.1\\classic.pdf");
+            JasperExportManager.exportReportToPdfFile(jasperPrint, "C:\\Users\\gmulle01\\Documents\\GitHub\\Gestion-offre-de-formation\\jasperReportFile\\ListeClient.pdf");
+        } catch (JRException e) {
+
+            e.printStackTrace();
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        } finally {
+            try {
+                 connection.close();
+                } catch (SQLException e) {
+
+                        e.printStackTrace();
+                }
+        }
+
+    }
+    
+    public  void ListeCourse() {
+
+        // - Paramètres de connexion à la base de données
+        String url = "jdbc:derby://localhost:1527/courses";
+        String login = "Courses";
+        String password = "Courses";
+        Connection connection = null;
+
+        try {
+            // - Connexion à la base
+            Driver monDriver = new org.apache.derby.jdbc.ClientDriver();
+            DriverManager.registerDriver(monDriver);
+            connection = DriverManager.getConnection(url, login, password);
+
+            // - Chargement et compilation du rapport
+            JasperDesign jasperDesign = JRXmlLoader.load("C:\\Users\\gmulle01\\Documents\\GitHub\\Gestion-offre-de-formation\\jasperReportFile\\ListeCourse.jrxml");
+            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+
+            // - Paramètres à envoyer au rapport
+            Map parameters = new HashMap();
+            parameters.put("Titre", "Titre");
+
+            // - Execution du rapport
+            JasperPrint jasperPrint = JasperFillManager.fillReportToFile(jasperReport, parameters, connection);
+
+            // - Création du rapport au format PDF
+            JasperExportManager.exportReportToPdfFile(jasperPrint, "C:\\Users\\gmulle01\\Documents\\GitHub\\Gestion-offre-de-formation\\jasperReportFile\\ListeCourse.pdf");
         } catch (JRException e) {
 
             e.printStackTrace();
