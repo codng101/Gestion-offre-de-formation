@@ -53,7 +53,7 @@ public class ClientDao {
     {
         //session.delete(loc);
         //session.flush();
-        Query q = session.createQuery("delete from client where client_id = "+id);
+        Query q = session.createQuery("delete from Client where client_id = "+id);
         q.executeUpdate();
     }
     public void setClient(Client c)

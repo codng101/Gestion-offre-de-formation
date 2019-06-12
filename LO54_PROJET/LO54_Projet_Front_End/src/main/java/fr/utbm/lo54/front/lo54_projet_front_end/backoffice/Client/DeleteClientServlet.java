@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fr.utbm.lo54.front.lo54_projet_front_end.backoffice.Courses;
+package fr.utbm.lo54.front.lo54_projet_front_end.backoffice.Client;
 
-import fr.utbm.lo54.front.lo54_projet_front_end.entity.Course;
-import fr.utbm.lo54.front.lo54_projet_front_end.repository.CourseDao;
+import fr.utbm.lo54.front.lo54_projet_front_end.entity.Client;
+import fr.utbm.lo54.front.lo54_projet_front_end.repository.ClientDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -18,19 +18,12 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author El Popcorn
+ * @author Victor
  */
-@WebServlet(name = "DeleteCourseServlet", urlPatterns =
-{
-    "/SupprimerCours"
-})
-public class DeleteCourseServlet extends HttpServlet
-{
-    
-    public static final String VUE = "/WEB-INF/Courses/deleteCourseForm.jsp";
-    public static final String CHAMP_TITRE="titre";
-    public static final String CHAMP_CODE ="code";
+@WebServlet(name = "DeleteClientServlet", urlPatterns = {"/SupprimerClient"})
+public class DeleteClientServlet extends HttpServlet {
 
+    public static final String VUE = "/WEB-INF/Client/deleteClientForm.jsp";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -41,19 +34,17 @@ public class DeleteCourseServlet extends HttpServlet
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
-    {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter())
-        {
+        try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet DeleteCourseServlet</title>");            
+            out.println("<title>Servlet DeleteClientServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet DeleteCourseServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet DeleteClientServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -69,11 +60,12 @@ public class DeleteCourseServlet extends HttpServlet
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException 
     {
-        RequestDispatcher rd = this.getServletContext().getRequestDispatcher(VUE);
-        rd.forward(request, response);
+        String idString = request.getParameter("id");
+        request.setAttribute("id", idString);
+        
+        request.getRequestDispatcher(VUE).forward(request,response);
     }
 
     /**
@@ -85,20 +77,19 @@ public class DeleteCourseServlet extends HttpServlet
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException 
     {
         request.setCharacterEncoding("UTF-8"); // Pour gérer les accents mamène
-        String code =request.getParameter(CHAMP_CODE);
+        String code =request.getParameter("id");
+        int id = Integer.parseInt(code);
         try 
         {
-               CourseDao cd = new CourseDao();
+               ClientDao cd = new ClientDao();
                cd.connect();
-               Course c = cd.getCourseById(code);
+               cd.deleteClient(id);
+               cd.disconnect();
                
-               cd.deleteCourse(c);
-               cd.disconnect(); 
-               
-               RequestDispatcher rs =  this.getServletContext().getRequestDispatcher("/VoirCours");
+               RequestDispatcher rs =  this.getServletContext().getRequestDispatcher("/VoirClients");
                rs.forward(request, response);
         } 
         catch (Exception e) 
@@ -112,7 +103,7 @@ public class DeleteCourseServlet extends HttpServlet
                 out.println("<title>Erreur suppression</title>");            
                 out.println("</head>");
                 out.println("<body>");
-                out.println("<h1>Erreur lors de la suppression du cours</h1>");
+                out.println("<h1>Erreur lors de la suppression du client</h1>");
                 out.println("<div> Erreur : ");
                 out.println(e.getMessage()+"</div>");
                 out.println("<div><a href='http://localhost:8080/LO54_Projet_Front_End/index.html'> Retour à la page d'acceuil </a></div>");
@@ -128,8 +119,7 @@ public class DeleteCourseServlet extends HttpServlet
      * @return a String containing servlet description
      */
     @Override
-    public String getServletInfo()
-    {
+    public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
 

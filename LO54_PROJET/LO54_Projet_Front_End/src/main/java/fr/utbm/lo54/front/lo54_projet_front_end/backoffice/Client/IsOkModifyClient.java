@@ -17,8 +17,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Victor
  */
-@WebServlet(name = "IsOkAddClient", urlPatterns = {"/ClientAjoute"})
-public class IsOkAddClient extends HttpServlet {
+@WebServlet(name = "IsOkModifyClient", urlPatterns = {"/ClientModifie"})
+public class IsOkModifyClient extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -29,8 +29,7 @@ public class IsOkAddClient extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) 
         {
@@ -38,11 +37,11 @@ public class IsOkAddClient extends HttpServlet {
             out.println("<html>");
             out.println("<head>");
             out.println(" <link rel=\"stylesheet\" type=\"text/css\" href=\"boots.css\">");
-            out.println("<title>Client ajouté</title>");            
+            out.println("<title>Client modifié</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Client ajouté avec succés</h1>");
-            out.println("<div><a href='http://localhost:8080/LO54_Projet_Front_End/AjouterClient'> Retour à la page d'ajout </a></div>");
+            out.println("<h1>Client modifié avec succés</h1>");
+            out.println("<div><a href='http://localhost:8080/LO54_Projet_Front_End/VoirClients'> Retour à la liste des clients </a></div>");
             out.println("</body>");
             out.println("</html>");
         }

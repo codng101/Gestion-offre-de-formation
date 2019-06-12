@@ -22,9 +22,9 @@
         <form style='margin-left: 10px;' action='AjouterCours' method='post' accept-charset="UTF-8">
             <div class="form-group">
               <label for="code">Code du cours</label>
-              <input type="text" class="form-control" name="code" id='code' placeholder="Entrez le code du cous...">
+              <input type="text" class="form-control" name="code" id='code' placeholder="Entrez le code du cours..." required>
               <label for="titre">Titre du cours</label>
-              <input type="text" class="form-control" name="titre" id='titre' placeholder="Entrez le titre du cours...">
+              <input type="text" class="form-control" name="titre" id='titre' placeholder="Entrez le titre du cours..." required>
             </div>
             <button type="submit" id='button_add_city' class="btn btn-primary">Enregistrer</button>
         </form>

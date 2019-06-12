@@ -24,7 +24,7 @@
         <form style='margin-left: 10px;' action='ModifierLieu' method='post' accept-charset="UTF-8">
             <div class="form-group">
               <label for="city">Nom de la ville</label>
-              <input type="text" class="form-control" name="city" id='city' placeholder="<%= request.getParameter("city")%>">
+              <input type="text" class="form-control" name="city" id='city' placeholder="<%= request.getParameter("city")%>" required>
               <input type="hidden" id="id" name="id" value="<%= request.getParameter("id")%>">
             </div>
             <button type="submit" id='button_mod_city' class="btn btn-primary">Enregistrer</button>

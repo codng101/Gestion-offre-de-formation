@@ -2,6 +2,7 @@ D:\_UTBM\S4\LO54\Projet_JAVA\Gestion-offre-de-formation\LO54_PROJET\LO54_Projet_
 D:\_UTBM\S4\LO54\Projet_JAVA\Gestion-offre-de-formation\LO54_PROJET\LO54_Projet_Front_End\src\main\java\fr\utbm\lo54\front\lo54_projet_front_end\entity\Sessions.java
 D:\_UTBM\S4\LO54\Projet_JAVA\Gestion-offre-de-formation\LO54_PROJET\LO54_Projet_Front_End\src\main\java\fr\utbm\lo54\front\lo54_projet_front_end\backoffice\Location\IsKoAddLocationServlet.java
 D:\_UTBM\S4\LO54\Projet_JAVA\Gestion-offre-de-formation\LO54_PROJET\LO54_Projet_Front_End\src\main\java\fr\utbm\lo54\front\lo54_projet_front_end\repository\SessionsDao.java
+D:\_UTBM\S4\LO54\Projet_JAVA\Gestion-offre-de-formation\LO54_PROJET\LO54_Projet_Front_End\src\main\java\fr\utbm\lo54\front\lo54_projet_front_end\backoffice\Client\ModifyClientServlet.java
 D:\_UTBM\S4\LO54\Projet_JAVA\Gestion-offre-de-formation\LO54_PROJET\LO54_Projet_Front_End\src\main\java\fr\utbm\lo54\front\lo54_projet_front_end\entity\Location.java
 D:\_UTBM\S4\LO54\Projet_JAVA\Gestion-offre-de-formation\LO54_PROJET\LO54_Projet_Front_End\src\main\java\fr\utbm\lo54\front\lo54_projet_front_end\backoffice\session\IsOkModifySessionServlet.java
 D:\_UTBM\S4\LO54\Projet_JAVA\Gestion-offre-de-formation\LO54_PROJET\LO54_Projet_Front_End\src\main\java\fr\utbm\lo54\front\lo54_projet_front_end\backoffice\Client\DisplayClientsServlet.java
@@ -16,8 +17,10 @@ D:\_UTBM\S4\LO54\Projet_JAVA\Gestion-offre-de-formation\LO54_PROJET\LO54_Projet_
 D:\_UTBM\S4\LO54\Projet_JAVA\Gestion-offre-de-formation\LO54_PROJET\LO54_Projet_Front_End\src\main\java\fr\utbm\lo54\front\lo54_projet_front_end\backoffice\session\IsOkAddSessionServlet.java
 D:\_UTBM\S4\LO54\Projet_JAVA\Gestion-offre-de-formation\LO54_PROJET\LO54_Projet_Front_End\src\main\java\fr\utbm\lo54\front\lo54_projet_front_end\repository\ClientDao.java
 D:\_UTBM\S4\LO54\Projet_JAVA\Gestion-offre-de-formation\LO54_PROJET\LO54_Projet_Front_End\src\main\java\fr\utbm\lo54\front\lo54_projet_front_end\repository\LocationDao.java
+D:\_UTBM\S4\LO54\Projet_JAVA\Gestion-offre-de-formation\LO54_PROJET\LO54_Projet_Front_End\src\main\java\fr\utbm\lo54\front\lo54_projet_front_end\backoffice\Client\DeleteClientServlet.java
 D:\_UTBM\S4\LO54\Projet_JAVA\Gestion-offre-de-formation\LO54_PROJET\LO54_Projet_Front_End\src\main\java\fr\utbm\lo54\front\lo54_projet_front_end\tools\HibernateUtil.java
 D:\_UTBM\S4\LO54\Projet_JAVA\Gestion-offre-de-formation\LO54_PROJET\LO54_Projet_Front_End\src\main\java\fr\utbm\lo54\front\lo54_projet_front_end\backoffice\session\DisplaySessionsServlet.java
+D:\_UTBM\S4\LO54\Projet_JAVA\Gestion-offre-de-formation\LO54_PROJET\LO54_Projet_Front_End\src\main\java\fr\utbm\lo54\front\lo54_projet_front_end\backoffice\Client\IsOkModifyClient.java
 D:\_UTBM\S4\LO54\Projet_JAVA\Gestion-offre-de-formation\LO54_PROJET\LO54_Projet_Front_End\src\main\java\fr\utbm\lo54\front\lo54_projet_front_end\backoffice\Courses\DeleteCourseServlet.java
 D:\_UTBM\S4\LO54\Projet_JAVA\Gestion-offre-de-formation\LO54_PROJET\LO54_Projet_Front_End\src\main\java\fr\utbm\lo54\front\lo54_projet_front_end\entity\Client.java
 D:\_UTBM\S4\LO54\Projet_JAVA\Gestion-offre-de-formation\LO54_PROJET\LO54_Projet_Front_End\src\main\java\fr\utbm\lo54\front\lo54_projet_front_end\backoffice\Location\IsOkAddLocationServlet.java

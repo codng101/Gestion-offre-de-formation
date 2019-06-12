@@ -22,15 +22,15 @@
         <form style='margin-left: 10px; width: 50%;' action='AjouterClient' method='post' accept-charset="UTF-8">
             <div class="form-group">
               <label for="lName">Nom de famille</label>
-              <input type="text" class="form-control" name="lName" id='lName' placeholder="Entrez le nom de famille...">
+              <input type="text" class="form-control" name="lName" id='lName' placeholder="Entrez le nom de famille..." required>
               <label for="fName">Prénom</label>
-              <input type="text" class="form-control" name="fName" id='fName' placeholder="Entrez le prénom...">
+              <input type="text" class="form-control" name="fName" id='fName' placeholder="Entrez le prénom..." required>
               <label for="adress">Adresse</label>
-              <input type="text" class="form-control" name="adress" id='adress' placeholder="Entrez votre adresse..">
+              <input type="text" class="form-control" name="adress" id='adress' placeholder="Entrez votre adresse.." required>
               <label for="telephone">Telephone</label>
               <input type="tel" class="form-control" name="telephone" id='telephone' placeholder="Ex: 0123456789 /+33123456789" pattern="[0-9]{10}|\+33[0-9]{9}" required>
               <label for="mail">Adresse mail</label>
-              <input type="email" class="form-control" name="mail" id='mail' placeholder="Ex: jean@bon.fr" pattern="^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$">
+              <input type="email" class="form-control" name="mail" id='mail' placeholder="Ex: jean@bon.fr" pattern="^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$" required>
             </div>
             <button type="submit" id='button_add_city' class="btn btn-primary">Enregistrer</button>
         </form>

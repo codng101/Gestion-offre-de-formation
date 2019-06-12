@@ -69,7 +69,7 @@ public class DisplayClientsServlet extends HttpServlet {
                     for (Client cli : clients)
                     {
                         out.println("<tr>");
-                            out.println("<td align='center'>");
+                            out.println("<td>");
                                 out.println(cli.getLastname());
                             out.println("</td>");
                             out.println("<td>");
@@ -82,7 +82,7 @@ public class DisplayClientsServlet extends HttpServlet {
                                 out.println("<a href='http://localhost:8080/LO54_Projet_Front_End/ModifierClient?id="+cli.getID()+"'>Modifier</a>");
                             out.println("</td>");
                             out.println("<td>");
-                                out.println("<a href='http://localhost:8080/LO54_Projet_Front_End/SupprimerClient?code="+cli.getID()+"'>Supprimer</a>");
+                                out.println("<a href='http://localhost:8080/LO54_Projet_Front_End/SupprimerClient?id="+cli.getID()+"'>Supprimer</a>");
                             out.println("</td>");
                         out.println("</tr>");
                     }

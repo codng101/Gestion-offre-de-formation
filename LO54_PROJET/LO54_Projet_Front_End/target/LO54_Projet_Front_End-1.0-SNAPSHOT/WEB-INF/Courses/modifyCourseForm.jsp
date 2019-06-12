@@ -23,7 +23,7 @@
         <form style='margin-left: 10px;' action='ModifierCours' method='post' accept-charset="UTF-8">
             <div class="form-group">
               <label for="titre">Titre du cours</label>
-              <input type="text" class="form-control" name="titre" id='titre' placeholder="<%= request.getParameter("titre")%>">
+              <input type="text" class="form-control" name="titre" id='titre' placeholder="<%= request.getParameter("titre")%>" required>
               <input type="hidden" id="code" name="code" value="<%= request.getParameter("code")%>">
             </div>
             <button type="submit" id='button_mod_city' class="btn btn-primary">Enregistrer</button>

@@ -8,11 +8,11 @@
 - Créer des sessions (nécessite cours + nécessite locations) DONE
 	- Modifier /supprimer session DONE
 
-- S'inscrire aux sessions disponibles -> Servlet à part
+- S'inscrire aux sessions disponibles -> Servlet à part 
 	- Lors de l'inscription, vérifier que le client n'est pas déjà inscrit à la même heure autre part
 
 - Accéder aux comptes clients -> voir les clients : Servlet
-	- Créer des clients -> JSP (form)
+	- Créer des clients -> JSP (form) DONE
 	- Modifier / supprimer des clients : Servlet ?
 
  

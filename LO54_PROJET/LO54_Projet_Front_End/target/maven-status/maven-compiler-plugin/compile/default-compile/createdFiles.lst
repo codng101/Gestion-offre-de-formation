@@ -1,6 +1,7 @@
 fr\utbm\lo54\front\lo54_projet_front_end\backoffice\Location\ModifyLocationServlet.class
 fr\utbm\lo54\front\lo54_projet_front_end\backoffice\Courses\IsOkAddCourseServlet.class
 fr\utbm\lo54\front\lo54_projet_front_end\backoffice\session\AddSessionServlet.class
+fr\utbm\lo54\front\lo54_projet_front_end\backoffice\Client\IsOkModifyClient.class
 fr\utbm\lo54\front\lo54_projet_front_end\backoffice\Courses\DisplayCoursesServlet.class
 fr\utbm\lo54\front\lo54_projet_front_end\entity\Client.class
 fr\utbm\lo54\front\lo54_projet_front_end\backoffice\Client\DisplayClientsServlet.class
@@ -13,11 +14,14 @@ fr\utbm\lo54\front\lo54_projet_front_end\backoffice\Location\AddLocationServlet.
 fr\utbm\lo54\front\lo54_projet_front_end\backoffice\Client\IsOkAddClient.class
 fr\utbm\lo54\front\lo54_projet_front_end\backoffice\Location\IsKoAddLocationServlet.class
 fr\utbm\lo54\front\lo54_projet_front_end\repository\CourseDao.class
+.netbeans_automatic_build
 fr\utbm\lo54\front\lo54_projet_front_end\backoffice\session\IsOkAddSessionServlet.class
 fr\utbm\lo54\front\lo54_projet_front_end\backoffice\Courses\DeleteCourseServlet.class
+fr\utbm\lo54\front\lo54_projet_front_end\backoffice\Client\DeleteClientServlet.class
 fr\utbm\lo54\front\lo54_projet_front_end\backoffice\session\IsOkModifySessionServlet.class
 fr\utbm\lo54\front\lo54_projet_front_end\backoffice\Courses\ModifyCourseServlet.class
 fr\utbm\lo54\front\lo54_projet_front_end\backoffice\Location\IsKoModifyLocation.class
+fr\utbm\lo54\front\lo54_projet_front_end\backoffice\Client\ModifyClientServlet.class
 fr\utbm\lo54\front\lo54_projet_front_end\entity\Location.class
 fr\utbm\lo54\front\lo54_projet_front_end\repository\ClientDao.class
 fr\utbm\lo54\front\lo54_projet_front_end\backoffice\session\DisplaySessionsServlet.class

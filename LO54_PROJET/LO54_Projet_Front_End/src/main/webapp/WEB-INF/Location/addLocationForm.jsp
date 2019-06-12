@@ -22,7 +22,7 @@
         <form style='margin-left: 10px;' action='AjouterUnLieu' method='post' accept-charset="UTF-8">
             <div class="form-group">
               <label for="city">Nom de la ville</label>
-              <input type="text" class="form-control" name="city" id='city' placeholder="Entrez le nom de la ville...">
+              <input type="text" class="form-control" name="city" id='city' placeholder="Entrez le nom de la ville..." required>
             </div>
            
             <button type="submit" id='button_add_city' class="btn btn-primary">Enregistrer</button>
