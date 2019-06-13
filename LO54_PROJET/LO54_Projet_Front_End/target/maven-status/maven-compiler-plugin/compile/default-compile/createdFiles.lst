@@ -8,13 +8,14 @@ fr\utbm\lo54\front\lo54_projet_front_end\backoffice\Client\DisplayClientsServlet
 fr\utbm\lo54\front\lo54_projet_front_end\backoffice\Location\DeleteLocationServlet.class
 fr\utbm\lo54\front\lo54_projet_front_end\backoffice\Location\DisplayLocationsServlet.class
 fr\utbm\lo54\front\lo54_projet_front_end\backoffice\session\DeleteSessionServlet.class
+fr\utbm\lo54\fronty\lo54_projet_front_end\backoffice\participe\AddParticipeServlet.class
 fr\utbm\lo54\front\lo54_projet_front_end\backoffice\Client\AddClientServlet.class
 fr\utbm\lo54\front\lo54_projet_front_end\backoffice\Location\IsOkModifyLocationServlet.class
 fr\utbm\lo54\front\lo54_projet_front_end\backoffice\Location\AddLocationServlet.class
 fr\utbm\lo54\front\lo54_projet_front_end\backoffice\Client\IsOkAddClient.class
 fr\utbm\lo54\front\lo54_projet_front_end\backoffice\Location\IsKoAddLocationServlet.class
 fr\utbm\lo54\front\lo54_projet_front_end\repository\CourseDao.class
-.netbeans_automatic_build
+fr\utbm\lo54\fronty\lo54_projet_front_end\backoffice\participe\IsOkAddParticipantServlet.class
 fr\utbm\lo54\front\lo54_projet_front_end\backoffice\session\IsOkAddSessionServlet.class
 fr\utbm\lo54\front\lo54_projet_front_end\backoffice\Courses\DeleteCourseServlet.class
 fr\utbm\lo54\front\lo54_projet_front_end\backoffice\Client\DeleteClientServlet.class

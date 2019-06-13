@@ -19,7 +19,7 @@ public class Client implements Serializable
     private String phone;
     private String email;
     
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "clients") // Case sensitive, référence le set contenu dans l'entité Sessions (le set s'appelle clients)
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "clients") // Case sensitive, référence le set contenu dans l'entité Sessions (le set s'appelle clients)
     private Set<Sessions> sessions; 
 
     public Set<Sessions> getSessions() {
@@ -105,5 +105,25 @@ public class Client implements Serializable
 
     public void setEmail(String email) {
         this.email = email;
+    }
+    
+    @Override
+    public boolean equals(Object v)
+    {
+        boolean retVal = false;
+        if(v instanceof Client)
+        {
+            Client ptr = (Client)v;
+            retVal = ptr.client_id==this.client_id;
+        }
+        return retVal;
+    }
+
+    @Override
+    public int hashCode() 
+    {
+        int hash = 5;
+        hash = 97 * hash + this.client_id;
+        return hash;
     }
 }
