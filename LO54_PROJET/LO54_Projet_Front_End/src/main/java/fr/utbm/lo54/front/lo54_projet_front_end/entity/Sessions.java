@@ -120,4 +120,22 @@ public class Sessions implements Serializable
     public void setMax(int max) {
         this.maximum = max;
     }
+    @Override
+    public boolean equals(Object v)
+    {
+        boolean retVal = false;
+        if(v instanceof Sessions)
+        {
+            Sessions ptr = (Sessions)v;
+            retVal = ptr.session_id==this.session_id;
+        }
+        return retVal;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 71 * hash + this.session_id;
+        return hash;
+    }
 }

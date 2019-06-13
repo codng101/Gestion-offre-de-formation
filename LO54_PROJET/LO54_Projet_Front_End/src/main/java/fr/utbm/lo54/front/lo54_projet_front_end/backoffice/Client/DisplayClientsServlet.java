@@ -63,6 +63,7 @@ public class DisplayClientsServlet extends HttpServlet {
                         out.println("<th scope=\"col\" >Email</th>");
                         out.println("<th scope=\"col\" > </th>");
                         out.println("<th scope=\"col\" > </th>");
+                        out.println("<th scope=\"col\" > </th>");
                     out.println("</tr>");
                 out.println("</thead>");
                 out.println("<tbody>");
@@ -83,6 +84,9 @@ public class DisplayClientsServlet extends HttpServlet {
                             out.println("</td>");
                             out.println("<td>");
                                 out.println("<a href='http://localhost:8080/LO54_Projet_Front_End/SupprimerClient?id="+cli.getID()+"'>Supprimer</a>");
+                            out.println("</td>");
+                            out.println("<td>");
+                                out.println("<a href='http://localhost:8080/LO54_Projet_Front_End/VoirSessionsClient?id="+cli.getID()+"'>Voir les sessions</a>");
                             out.println("</td>");
                         out.println("</tr>");
                     }

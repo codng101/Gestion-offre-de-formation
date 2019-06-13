@@ -1,8 +1,10 @@
+fr\utbm\lo54\fronty\lo54_projet_front_end\backoffice\participe\DesinscrireClientSessionServlet.class
 fr\utbm\lo54\front\lo54_projet_front_end\backoffice\Location\ModifyLocationServlet.class
 fr\utbm\lo54\front\lo54_projet_front_end\backoffice\Courses\IsOkAddCourseServlet.class
 fr\utbm\lo54\front\lo54_projet_front_end\backoffice\session\AddSessionServlet.class
 fr\utbm\lo54\front\lo54_projet_front_end\backoffice\Client\IsOkModifyClient.class
 fr\utbm\lo54\front\lo54_projet_front_end\backoffice\Courses\DisplayCoursesServlet.class
+fr\utbm\lo54\fronty\lo54_projet_front_end\backoffice\participe\DisplaySessionPerClientServlet.class
 fr\utbm\lo54\front\lo54_projet_front_end\entity\Client.class
 fr\utbm\lo54\front\lo54_projet_front_end\backoffice\Client\DisplayClientsServlet.class
 fr\utbm\lo54\front\lo54_projet_front_end\backoffice\Location\DeleteLocationServlet.class
