@@ -63,6 +63,7 @@ public class DisplaySessionsServlet extends HttpServlet {
                         out.println("<th scope=\"col\" >Heure de fin</th>");
                         out.println("<th scope=\"col\" >Matière</th>");
                         out.println("<th scope=\"col\" >Lieu</th>");
+                        out.println("<th scope=\"col\" >Places disponibles</th>");
                         out.println("<th scope=\"col\" > </th>");
                         out.println("<th scope=\"col\" > </th>");
                     out.println("</tr>");
@@ -75,30 +76,21 @@ public class DisplaySessionsServlet extends HttpServlet {
                                 out.println(ses.getId());
                             out.println("</td>");
                             out.println("<td>");
-                                if(ses.getStartDate().getMinutes()==0)
-                                {
-                                    out.println(ses.getStartDate().getHours()+":00");     
-                                }
-                                else
-                                {
-                                    out.println(ses.getStartDate().getHours()+":"+ses.getStartDate().getMinutes());     
-                                }
+                                    out.println(ses.getStartDate());     
                             out.println("</td>");
                             out.println("<td>");
-                                if(ses.getStartDate().getMinutes()==0)
-                                {
-                                    out.println(ses.getEndDate().getHours()+":00");     
-                                }
-                                else
-                                {
-                                    out.println(ses.getEndDate().getHours()+":"+ses.getEndDate().getMinutes());     
-                                }                
+                                    out.println(ses.getEndDate());
                             out.println("</td>");
                             out.println("<td>");
                                 out.println(ses.getCrs().getCode());                        
                             out.println("</td>");
                             out.println("<td>");
                                 out.println(ses.getLoc().getCity());                        
+                            out.println("</td>");
+                            out.println("<td>");
+                            int dispo = ses.getMax() - ses.getSetClients().size();
+                                if(dispo != 0){ out.println(dispo);}
+                                else {out.println("Aucune");}
                             out.println("</td>");
                             out.println("<td>");
                                 out.println("<a href='http://localhost:8080/LO54_Projet_Front_End/ModifierSession?id="+ses.getId()+"'>Modifier</a>");

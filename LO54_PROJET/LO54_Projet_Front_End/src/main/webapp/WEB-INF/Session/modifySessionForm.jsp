@@ -33,7 +33,7 @@
             <input type="text" name="idSession" hidden="true" value="<% int id = (int)request.getAttribute("sessionId"); out.print(id);%>"> 
             <div class="form-group">
                 <label for="courseList" class="text-info" >Sélectionner un cours :</label>
-                <select id="courseList" name="courseList">
+                <select id="courseList" name="courseList" required>
                     <% 
                         out.print("<option value="+course.getCode()+">"+course.getCode()+"</option>");
                     %>
@@ -41,23 +41,25 @@
             </div>
             <div class="form-group">
                 <label for="locationList" class="text-info" >Sélectionner un lieu :</label>
-                <select id="locationList" name="locationList">
+                <select id="locationList" name="locationList" required>
                     <% 
                         out.print("<option value="+location.getId()+">"+location.getCity()+"</option>");
                     %>
                 </select>
             </div>
             <div class="form-group">
-              <label for="heureDeb">Heure de début</label>
-              <input type="time" class="form-control" name="heureDeb" id='heureDeb' value="<%request.getAttribute("sessionStart");%>">
+              <label for="heureDeb">Date et heure de début</label>
+              <input type="date" class="form-control" name="dateDeb" id ='dateDeb' value="<%request.getAttribute("sessionStart");%>" required>
+              <input type="time" class="form-control" name="heureDeb" id='heureDeb' value="<%request.getAttribute("sessionStart");%>" required>
             </div>
             <div class="form-group">
-              <label for="heureFin">Heure de fin</label>
-              <input type="time" class="form-control" name="heureFin" id='heureFin' value="<%request.getAttribute("sessionStop");%>">
+              <label for="heureFin">Date et heure de fin</label>
+              <input type="date" class="form-control" name="dateFin" id ='dateFin' value="<%request.getAttribute("sessionStop");%>" required>
+              <input type="time" class="form-control" name="heureFin" id='heureFin' value="<%request.getAttribute("sessionStop");%>" required>
             </div>
             <div class="form-group">
               <label for="nbMax">Nombre de places</label>
-              <input type="number" class="form-control" name="nbMax" id='nbMax' value="<%request.getAttribute("sessionSize");%>">
+              <input type="number" class="form-control" name="nbMax" id='nbMax' value="<%request.getAttribute("sessionSize");%>" required>
             </div>
             <button type="submit" id='button_add_session' class="btn btn-primary">Modifier</button>
         </form>

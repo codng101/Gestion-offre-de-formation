@@ -19,6 +19,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -36,6 +37,8 @@ public class AddSessionServlet extends HttpServlet {
     public static final String VUE = "/WEB-INF/Session/addSessionForm.jsp";
     public static final String CHAMP_COURS = "courseList";
     public static final String CHAMP_LIEU = "locationList";
+    public static final String CHAMP_DDEB = "dateDeb";
+    public static final String CHAMP_DFIN = "dateFin";
     public static final String CHAMP_HDEB = "heureDeb";
     public static final String CHAMP_HFIN = "heureFin";
     public static final String CHAMP_NBMAX = "nbMax";
@@ -116,6 +119,8 @@ public class AddSessionServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8"); // Pour gérer les accents mamène
         String courseId = request.getParameter(CHAMP_COURS);
         String locationId = request.getParameter(CHAMP_LIEU);
+        String jrDeb = request.getParameter(CHAMP_DDEB);
+        String jrFin = request.getParameter(CHAMP_DFIN);
         String heureDeb = request.getParameter(CHAMP_HDEB);
         String heureFin = request.getParameter(CHAMP_HFIN);
         String nbMax = request.getParameter(CHAMP_NBMAX);
@@ -135,16 +140,13 @@ public class AddSessionServlet extends HttpServlet {
                 Location l = ld.getLocationById(lId);
                 ld.disconnect();
                 
-                DateFormat formatter = new SimpleDateFormat("HH:mm");
+                DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd, HH:mm",Locale.FRANCE);
+                String fullDeb = jrDeb+", "+heureDeb;
+                String fullFin = jrFin+", "+heureFin;
                 
-                Time tDeb = new Time(formatter.parse(heureDeb).getTime());
-                Date dDeb = new Date();
-                dDeb.setTime(tDeb.getTime());
+                Date dDeb  = formatter.parse(fullDeb);
                 
-                
-                Time tFin = new Time(formatter.parse(heureFin).getTime());
-                Date dFin = new Date();
-                dFin.setTime(tFin.getTime());
+                Date dFin = formatter.parse(fullFin);
                 
                 int nMax = Integer.parseInt(nbMax);
                 

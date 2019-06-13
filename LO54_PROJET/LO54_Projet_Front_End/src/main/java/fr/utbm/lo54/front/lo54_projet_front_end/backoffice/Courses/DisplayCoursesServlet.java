@@ -53,6 +53,27 @@ public class DisplayCoursesServlet extends HttpServlet
             out.println("<head>");
             out.println(" <link rel=\"stylesheet\" type=\"text/css\" href=\"boots.css\">");
             out.println("<title>Liste des lieux</title>");            
+            out.print("<script>" +
+                        "function myFunction() {" +
+                        "  var input, filter, table, tr, td, i, txtValue;" +
+                        "  input = document.getElementById(\"myInput\");" +
+                        "  filter = input.value.toUpperCase();" +
+                        "  table = document.getElementById(\"myTable\");" +
+                        "  tr = table.getElementsByTagName(\"tr\");" +
+                        "  for (i = 0; i < tr.length; i++) {" +
+                        "    td = tr[i].getElementsByTagName(\"td\")[1];" +
+                        "    if (td) {" +
+                        "      txtValue = td.textContent || td.innerText;" +
+                        "      if (txtValue.toUpperCase().indexOf(filter) > -1) {" +
+                        "        tr[i].style.display = \"\";" +
+                        "      } else {" +
+                        "        tr[i].style.display = \"none\";" +
+                        "      }\n" +
+                        "    }" +
+                        "  }" +
+                        "}" +
+                        "</script>");
+            
             out.println("</head>");
             out.println("<body>");
             out.println("<nav aria-label=\"breadcrumb\">");
@@ -62,10 +83,11 @@ public class DisplayCoursesServlet extends HttpServlet
                 out.println("</ol>");
             out.println("</nav>");
             
-            out.println("<table class=\"table\">");
+            out.println("<input type='text' id='myInput' style='width:50%;margin-bottom:5px;margin-left:5px' onkeyup='myFunction()' placeholder='Trier par titre ...'>");
+            out.println("<table id ='myTable' class=\"table\">");
                 out.println("<thead class=\"thead-light\">");
                     out.println("<tr> ");
-                        out.println("<th scope=\"col\" align='center'>Code</th>");
+                        out.println("<th scope=\"col\">Code</th>");
                         out.println("<th scope=\"col\" >Titre</th>");
                         out.println("<th scope=\"col\" > </th>");
                         out.println("<th scope=\"col\" > </th>");

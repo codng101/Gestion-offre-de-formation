@@ -30,7 +30,7 @@
         <form name="addSession" style='margin-left: 10px;width: 50%' action='AjouterSession' method='post' accept-charset="UTF-8">
             <div class="form-group">
                 <label for="courseList" class="text-info" >Sélectionner un cours :</label>
-                <select id="courseList" name="courseList">
+                <select id="courseList" name="courseList" required>
                     <% for (Course course : courses) 
                         {
                             out.print("<option value="+course.getCode()+">"+course.getCode()+"</option>");
@@ -40,7 +40,7 @@
             </div>
             <div class="form-group">
                 <label for="locationList" class="text-info" >Sélectionner un lieu :</label>
-                <select id="locationList" name="locationList">
+                <select id="locationList" name="locationList" required>
                     <% for (Location location : locations) 
                         {
                             out.print("<option value="+location.getId()+">"+location.getCity()+"</option>");
@@ -49,16 +49,18 @@
                 </select>
             </div>
             <div class="form-group">
-              <label for="heureDeb">Heure de début</label>
-              <input type="time" class="form-control" name="heureDeb" id='heureDeb'>
+              <label for="heureDeb">Date et heure de début</label>
+              <input type="date" class="form-control" name="dateDeb" id ='dateDeb' required>
+              <input type="time" class="form-control" name="heureDeb" id='heureDeb' required>
             </div>
             <div class="form-group">
-              <label for="heureFin">Heure de fin</label>
-              <input type="time" class="form-control" name="heureFin" id='heureFin'>
+              <label for="heureFin">Date et heure de fin</label>
+              <input type="date" class="form-control" name="dateFin" id ='dateFin' required>
+              <input type="time" class="form-control" name="heureFin" id='heureFin' required>
             </div>
             <div class="form-group">
               <label for="nbMax">Nombre de places</label>
-              <input type="number" class="form-control" name="nbMax" id='nbMax'>
+              <input type="number" class="form-control" name="nbMax" id='nbMax' required>
             </div>
             <button type="submit" id='button_add_session' class="btn btn-primary">Enregistrer</button>
         </form>

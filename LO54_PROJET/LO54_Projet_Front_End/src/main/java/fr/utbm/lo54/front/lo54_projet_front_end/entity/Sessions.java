@@ -26,7 +26,7 @@ public class Sessions implements Serializable
     @JoinColumn(name="code")
     private Course crs;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade =  CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade =  CascadeType.ALL)
     @JoinTable(name="PARTICIPE", 
             joinColumns=
                 {
@@ -37,7 +37,6 @@ public class Sessions implements Serializable
                     @JoinColumn(name = "client_id",nullable = false,updatable = false)
                 }
     )
-    
     private Set<Client> clients;
 
     public Location getLoc() {

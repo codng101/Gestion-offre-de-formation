@@ -16,7 +16,7 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href='http://localhost:8080/LO54_Projet_Front_End/index.html'>Acceuil</a></li>
-              <li class="breadcrumb-item"><a href='http://localhost:8080/LO54_Projet_Front_End/MontrerCours'>Liste des cours</a></li>
+              <li class="breadcrumb-item"><a href='http://localhost:8080/LO54_Projet_Front_End/VoirCours'>Liste des cours</a></li>
               <li class="breadcrumb-item active" aria-current="page">Modification du cours</li>
             </ol>
         </nav>

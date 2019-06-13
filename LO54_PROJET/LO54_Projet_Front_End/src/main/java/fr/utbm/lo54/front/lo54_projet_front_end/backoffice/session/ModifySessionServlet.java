@@ -17,6 +17,7 @@ import java.sql.Time;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -34,6 +35,8 @@ public class ModifySessionServlet extends HttpServlet
 
     public static final String VUE = "/WEB-INF/Session/modifySessionForm.jsp";
     public static final String CHAMP_ID = "idSession";
+    public static final String CHAMP_DDEB = "dateDeb";
+    public static final String CHAMP_DFIN = "dateFin";
     public static final String CHAMP_HDEB = "heureDeb";
     public static final String CHAMP_HFIN = "heureFin";
     public static final String CHAMP_NBMAX = "nbMax";
@@ -87,8 +90,8 @@ public class ModifySessionServlet extends HttpServlet
         request.setAttribute("course", s.getCrs());
         request.setAttribute("location",s.getLoc());
         request.setAttribute("sessionId",s.getId());
-        request.setAttribute("sessionStart",(s.getStartDate().getHours()+":"+s.getStartDate().getMinutes()));
-        request.setAttribute("sessionStop",(s.getEndDate().getHours()+":"+s.getEndDate().getMinutes()));
+        request.setAttribute("sessionStart",(s.getStartDate()));
+        request.setAttribute("sessionStop",(s.getEndDate()));
         request.setAttribute("sessionSize",s.getMax());
         
         // Et on relaie à la page JSP
@@ -111,6 +114,8 @@ public class ModifySessionServlet extends HttpServlet
         request.setCharacterEncoding("UTF-8"); // Pour gérer les accents mamène
         String sessId = request.getParameter(CHAMP_ID);
         int id = Integer.parseInt(sessId);
+        String jrDeb = request.getParameter(CHAMP_DDEB);
+        String jrFin = request.getParameter(CHAMP_DFIN);
         String heureDeb = request.getParameter(CHAMP_HDEB);
         String heureFin = request.getParameter(CHAMP_HFIN);
         String nbMax = request.getParameter(CHAMP_NBMAX);
@@ -119,15 +124,14 @@ public class ModifySessionServlet extends HttpServlet
         {
             if(!heureDeb.trim().equals("") && !heureFin.trim().equals("")&& !nbMax.trim().equals(""))
             {         
-                DateFormat formatter = new SimpleDateFormat("HH:mm");
                 
-                Time tDeb = new Time(formatter.parse(heureDeb).getTime());
-                Date dDeb = new Date();
-                dDeb.setTime(tDeb.getTime());
+                DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd, HH:mm",Locale.FRANCE);
+                String fullDeb = jrDeb+", "+heureDeb;
+                String fullFin = jrFin+", "+heureFin;
                 
-                Time tFin = new Time(formatter.parse(heureFin).getTime());
-                Date dFin = new Date();
-                dFin.setTime(tFin.getTime());
+                Date dDeb  = formatter.parse(fullDeb);
+                
+                Date dFin = formatter.parse(fullFin);
                 
                 if(dFin.before(dDeb))
                 {
