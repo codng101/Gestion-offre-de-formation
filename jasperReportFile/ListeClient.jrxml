@@ -75,7 +75,7 @@
 		<band height="70" splitType="Stretch">
 			<image>
 				<reportElement x="-20" y="0" width="595" height="64" uuid="3ebaa6b9-f27e-43af-bc72-97bec00ae5b6"/>
-				<imageExpression><![CDATA["wood.jpg"]]></imageExpression>
+				<imageExpression><![CDATA["C:\\Users\\gmulle01\\Documents\\GitHub\\Gestion-offre-de-formation\\jasperReportFile\\wood.jpg"]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement style="Title" x="0" y="5" width="263" height="33" uuid="2f7d2a69-662a-41d8-a542-b33054482d21"/>

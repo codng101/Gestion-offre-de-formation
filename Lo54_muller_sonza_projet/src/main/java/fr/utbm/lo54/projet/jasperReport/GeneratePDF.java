@@ -42,14 +42,15 @@ public class GeneratePDF {
             // - Chargement et compilation du rapport
             JasperDesign jasperDesign = JRXmlLoader.load("C:\\Users\\gmulle01\\Documents\\GitHub\\Gestion-offre-de-formation\\jasperReportFile\\ListeClient.jrxml");
             JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
-
+            System.out.print("1");
             // - Paramètres à envoyer au rapport
             Map parameters = new HashMap();
             parameters.put("Titre", "Titre");
+            System.out.print("2");
 
             // - Execution du rapport
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, connection);
-
+            System.out.print("3");
             // - Création du rapport au format PDF
             JasperExportManager.exportReportToPdfFile(jasperPrint, "C:\\Users\\gmulle01\\Documents\\GitHub\\Gestion-offre-de-formation\\jasperReportFile\\ListeClient.pdf");
         } catch (JRException e) {
@@ -84,7 +85,7 @@ public class GeneratePDF {
             connection = DriverManager.getConnection(url, login, password);
 
             // - Chargement et compilation du rapport
-            JasperDesign jasperDesign = JRXmlLoader.load("C:\\Users\\gmulle01\\Documents\\GitHub\\Gestion-offre-de-formation\\jasperReportFile\\ListeCourse.jrxml");
+            JasperDesign jasperDesign = JRXmlLoader.load("C:\\Users\\gmulle01\\Documents\\GitHub\\Gestion-offre-de-formation\\jasperReportFile\\ListeCourses.jrxml");
             JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
 
             // - Paramètres à envoyer au rapport
@@ -92,7 +93,7 @@ public class GeneratePDF {
             parameters.put("Titre", "Titre");
 
             // - Execution du rapport
-            JasperPrint jasperPrint = JasperFillManager.fillReportToFile(jasperReport, parameters, connection);
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, connection);
 
             // - Création du rapport au format PDF
             JasperExportManager.exportReportToPdfFile(jasperPrint, "C:\\Users\\gmulle01\\Documents\\GitHub\\Gestion-offre-de-formation\\jasperReportFile\\ListeCourse.pdf");

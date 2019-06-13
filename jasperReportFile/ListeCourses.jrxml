@@ -57,17 +57,17 @@
 		<band height="70" splitType="Stretch">
 			<image>
 				<reportElement x="-20" y="0" width="595" height="64" uuid="43666b5f-ce2a-438b-8e5e-62ba9515c158"/>
-				<imageExpression><![CDATA["wood.jpg"]]></imageExpression>
+				<imageExpression><![CDATA["C:\\Users\\gmulle01\\Documents\\GitHub\\Gestion-offre-de-formation\\jasperReportFile\\wood.jpg"]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement style="Title" x="0" y="5" width="263" height="33" uuid="8337739e-b282-4471-a5a6-59aff76862de"/>
 				<textElement verticalAlignment="Middle"/>
-				<text><![CDATA[Wood Title]]></text>
+				<text><![CDATA[Liste des cours]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="SubTitle" x="63" y="39" width="200" height="22" forecolor="#FFFFFF" uuid="8eeea25e-2e0a-446c-9433-140050b75ccf"/>
 				<textElement textAlignment="Right"/>
-				<text><![CDATA[Wood SubTitle]]></text>
+				<text><![CDATA[]]></text>
 			</staticText>
 		</band>
 	</title>
