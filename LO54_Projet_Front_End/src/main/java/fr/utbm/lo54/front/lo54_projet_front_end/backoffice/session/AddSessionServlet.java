@@ -5,9 +5,9 @@
  */
 package fr.utbm.lo54.front.lo54_projet_front_end.backoffice.session;
 
-import fr.utbm.front.lo54_projet_front_end.service.CoursesServices;
-import fr.utbm.front.lo54_projet_front_end.service.LocationService;
-import fr.utbm.front.lo54_projet_front_end.service.SessionService;
+import fr.utbm.lo54.front.lo54_projet_front_end.service.CoursesServices;
+import fr.utbm.lo54.front.lo54_projet_front_end.service.LocationService;
+import fr.utbm.lo54.front.lo54_projet_front_end.service.SessionService;
 import fr.utbm.lo54.front.lo54_projet_front_end.entity.Course;
 import fr.utbm.lo54.front.lo54_projet_front_end.entity.Location;
 import fr.utbm.lo54.front.lo54_projet_front_end.entity.Sessions;

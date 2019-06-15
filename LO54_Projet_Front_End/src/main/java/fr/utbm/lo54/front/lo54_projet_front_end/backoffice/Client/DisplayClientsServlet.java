@@ -5,7 +5,7 @@
  */
 package fr.utbm.lo54.front.lo54_projet_front_end.backoffice.Client;
 
-import fr.utbm.front.lo54_projet_front_end.service.ClientService;
+import fr.utbm.lo54.front.lo54_projet_front_end.service.ClientService;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;

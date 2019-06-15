@@ -5,7 +5,7 @@
  */
 package fr.utbm.lo54.front.lo54_projet_front_end.backoffice.Courses;
 
-import fr.utbm.front.lo54_projet_front_end.service.CoursesServices;
+import fr.utbm.lo54.front.lo54_projet_front_end.service.CoursesServices;
 import fr.utbm.lo54.front.lo54_projet_front_end.entity.Course;
 import java.io.IOException;
 import java.io.PrintWriter;

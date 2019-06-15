@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fr.utbm.front.lo54_projet_front_end.service;
+package fr.utbm.lo54.front.lo54_projet_front_end.service;
 
 import fr.utbm.lo54.front.lo54_projet_front_end.entity.Location;
 import fr.utbm.lo54.front.lo54_projet_front_end.repository.LocationDao;

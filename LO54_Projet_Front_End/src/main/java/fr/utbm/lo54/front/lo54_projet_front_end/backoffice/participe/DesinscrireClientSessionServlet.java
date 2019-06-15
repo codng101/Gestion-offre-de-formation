@@ -3,15 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fr.utbm.lo54.fronty.lo54_projet_front_end.backoffice.participe;
+package fr.utbm.lo54.front.lo54_projet_front_end.backoffice.participe;
 
-import fr.utbm.front.lo54_projet_front_end.service.ClientService;
-import fr.utbm.front.lo54_projet_front_end.service.SessionService;
+import fr.utbm.lo54.front.lo54_projet_front_end.service.ClientService;
+import fr.utbm.lo54.front.lo54_projet_front_end.service.SessionService;
 import fr.utbm.lo54.front.lo54_projet_front_end.entity.Client;
 import fr.utbm.lo54.front.lo54_projet_front_end.entity.Sessions;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,13 +22,12 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Victor
  */
-@WebServlet(name = "AddParticipeServlet", urlPatterns = {"/AjouterParticipant"})
-public class AddParticipeServlet extends HttpServlet {
+@WebServlet(name = "DesinscrireClientSessionServlet", urlPatterns = {"/DesinscrireClient"})
+public class DesinscrireClientSessionServlet extends HttpServlet {
 
-    public static final String VUE = "/WEB-INF/Participe/addParticipationForm.jsp";
-    public static final String CHAMP_CLIENT = "clientList";
-    public static final String CHAMP_SESSION = "sessionList";
-    public static final String IS_OK_SERVLET = "/ParticipantAjoute";
+    public static final String VUE = "/WEB-INF/Participe/deleteParticipant.jsp";
+    public static final String CHAMP_IDC = "idC";
+    public static final String CHAMP_IDS = "idSes";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -47,10 +45,10 @@ public class AddParticipeServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AddParticipeServlet</title>");            
+            out.println("<title>Servlet DesinscrireClientSessionServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet AddParticipeServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet DesinscrireClientSessionServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -66,23 +64,22 @@ public class AddParticipeServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException 
     {
-        
         SessionService sS= new SessionService();
         ClientService cs =new ClientService();
         
-        List<Sessions> sessions = sS.getAllSessionss();
+        String clientStrId = request.getParameter("idCli");
+        int clientId = Integer.parseInt(clientStrId);
         
-        List<Client> clients = cs.getAllClients();
+        String sessionStrId = request.getParameter("idSes");
+        int sessionId = Integer.parseInt(sessionStrId);
         
+        request.setAttribute("session", sS.getSessionsById(sessionId));
+        request.setAttribute("client",cs.getClientById(clientId));
         
-        // on met tout ça dans la requête
-        request.setAttribute("clients",clients);
-        request.setAttribute("sessions",sessions);
-        
-        // Et on relaie à la page JSP
         request.getRequestDispatcher(VUE).forward(request,response);
+        
     }
 
     /**
@@ -94,48 +91,39 @@ public class AddParticipeServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException 
     {
-        request.setCharacterEncoding("UTF-8"); // Pour gérer les accents mamène
-        String sessionId = request.getParameter(CHAMP_SESSION);
-        String clientId = request.getParameter(CHAMP_CLIENT);
-        
-        try 
+        try
         {
-            
+            String sessionIdS = request.getParameter(CHAMP_IDS);
+            int sessionId = Integer.parseInt(sessionIdS);
+            String clientIdS = request.getParameter(CHAMP_IDC);
+            int clientId = Integer.parseInt(clientIdS);
+
             SessionService sS= new SessionService();
             ClientService cs =new ClientService();
             
-            int sesID = Integer.parseInt(sessionId);
-            int cliID = Integer.parseInt(clientId);
+            Client c = cs.getClientById(clientId);
             
+            Sessions s = sS.getSessionsById(sessionId);
+            s.getSetClients().remove(c);
+            sS.setSessions(s);
             
-            Client c = cs.getClientById(cliID);
-            
-            Sessions s = sS.getSessionsById(sesID);
-            
-            if(!s.getSetClients().contains(c))
-            {
-                s.getSetClients().add(c);
-                sS.setSessions(s);
-            }
-                        
-            RequestDispatcher rs =  this.getServletContext().getRequestDispatcher(IS_OK_SERVLET);
+            RequestDispatcher rs =  this.getServletContext().getRequestDispatcher("/VoirClients");
             rs.forward(request, response);
-            
-        } 
-        catch (Exception e) 
-        {  
+        }
+        catch(IOException | NumberFormatException | ServletException e)
+        {
             try (PrintWriter out = response.getWriter()) 
             { 
                 out.println("<!DOCTYPE html>");
                 out.println("<html>");
                 out.println("<head>");
                 out.println(" <link rel=\"stylesheet\" type=\"text/css\" href=\"boots.css\">");
-                out.println("<title>Erreur ajout de la session</title>");            
+                out.println("<title>Erreur suppression</title>");            
                 out.println("</head>");
                 out.println("<body>");
-                out.println("<h1>Erreur lors de l'ajout de la session</h1>");
+                out.println("<h1>Erreur lors de la suppression du client</h1>");
                 out.println("<div> Erreur : ");
                 out.println(e.getMessage()+"</div>");
                 out.println("<div><a href='http://localhost:8080/LO54_Projet_Front_End/index.html'> Retour à la page d'acceuil </a></div>");
@@ -143,6 +131,7 @@ public class AddParticipeServlet extends HttpServlet {
                 out.println("</html>");
             }
         }
+        
     }
 
     /**

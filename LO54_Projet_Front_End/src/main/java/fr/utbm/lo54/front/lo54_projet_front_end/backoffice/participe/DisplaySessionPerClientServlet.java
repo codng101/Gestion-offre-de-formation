@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fr.utbm.lo54.fronty.lo54_projet_front_end.backoffice.participe;
+package fr.utbm.lo54.front.lo54_projet_front_end.backoffice.participe;
 
+import fr.utbm.lo54.front.lo54_projet_front_end.service.ClientService;
+import fr.utbm.lo54.front.lo54_projet_front_end.entity.Client;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -17,9 +19,11 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Victor
  */
-@WebServlet(name = "IsOkParticipantAjoute", urlPatterns = {"/ParticipantAjoute"})
-public class IsOkAddParticipantServlet extends HttpServlet {
+@WebServlet(name = "DisplaySessionPerClientServlet", urlPatterns = {"/VoirSessionsClient"})
+public class DisplaySessionPerClientServlet extends HttpServlet {
 
+    public static final String VUE = "/WEB-INF/Participe/seeParticipation.jsp";
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -29,20 +33,18 @@ public class IsOkAddParticipantServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
-    {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) 
-        {
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println(" <link rel=\"stylesheet\" type=\"text/css\" href=\"boots.css\">");
-            out.println("<title>Participant ajouté</title>");            
+            out.println("<title>Servlet DisplaySessionPerClientServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Participant ajouté avec succés</h1>");
-            out.println("<div><a href='http://localhost:8080/LO54_Projet_Front_End/AjouterParticipant'> Retour à la page d'ajout </a></div>");
+            out.println("<h1>Servlet DisplaySessionPerClientServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -58,9 +60,15 @@ public class IsOkAddParticipantServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException 
+    {
+        String clientStrId = request.getParameter("id");
+        int clientId = Integer.parseInt(clientStrId);
+        
+        ClientService cs =new ClientService();
+        Client c =cs.getClientById(clientId);
+        request.setAttribute("client", cs.getClientById(clientId));
+        request.getRequestDispatcher(VUE).forward(request, response);
     }
 
     /**
