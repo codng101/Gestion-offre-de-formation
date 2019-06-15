@@ -5,10 +5,10 @@
  */
 package fr.utbm.lo54.fronty.lo54_projet_front_end.backoffice.participe;
 
+import fr.utbm.front.lo54_projet_front_end.service.ClientService;
+import fr.utbm.front.lo54_projet_front_end.service.SessionService;
 import fr.utbm.lo54.front.lo54_projet_front_end.entity.Client;
 import fr.utbm.lo54.front.lo54_projet_front_end.entity.Sessions;
-import fr.utbm.lo54.front.lo54_projet_front_end.repository.ClientDao;
-import fr.utbm.lo54.front.lo54_projet_front_end.repository.SessionsDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -66,8 +66,8 @@ public class DesinscrireClientSessionServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException 
     {
-        SessionsDao sd = new SessionsDao();
-        ClientDao cd = new ClientDao();
+        SessionService sS= new SessionService();
+        ClientService cs =new ClientService();
         
         String clientStrId = request.getParameter("idCli");
         int clientId = Integer.parseInt(clientStrId);
@@ -75,12 +75,8 @@ public class DesinscrireClientSessionServlet extends HttpServlet {
         String sessionStrId = request.getParameter("idSes");
         int sessionId = Integer.parseInt(sessionStrId);
         
-        sd.connect();
-        request.setAttribute("session", sd.getSessionsById(sessionId));
-        sd.disconnect();
-        cd.connect();
-        request.setAttribute("client",cd.getClientById(clientId));
-        cd.disconnect();
+        request.setAttribute("session", sS.getSessionsById(sessionId));
+        request.setAttribute("client",cs.getClientById(clientId));
         
         request.getRequestDispatcher(VUE).forward(request,response);
         
@@ -104,18 +100,14 @@ public class DesinscrireClientSessionServlet extends HttpServlet {
             String clientIdS = request.getParameter(CHAMP_IDC);
             int clientId = Integer.parseInt(clientIdS);
 
-            ClientDao cdao = new ClientDao();
-            SessionsDao sdao = new SessionsDao();
+            SessionService sS= new SessionService();
+            ClientService cs =new ClientService();
             
-            cdao.connect();
-            Client c = cdao.getClientById(clientId);
-            cdao.disconnect();
+            Client c = cs.getClientById(clientId);
             
-            sdao.connect();
-            Sessions s = sdao.getSessionsById(sessionId);
+            Sessions s = sS.getSessionsById(sessionId);
             s.getSetClients().remove(c);
-            sdao.setSessions(s);
-            sdao.disconnect();
+            sS.setSessions(s);
             
             RequestDispatcher rs =  this.getServletContext().getRequestDispatcher("/VoirClients");
             rs.forward(request, response);

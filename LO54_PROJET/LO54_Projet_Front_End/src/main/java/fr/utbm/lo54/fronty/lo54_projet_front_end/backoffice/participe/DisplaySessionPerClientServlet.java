@@ -5,8 +5,8 @@
  */
 package fr.utbm.lo54.fronty.lo54_projet_front_end.backoffice.participe;
 
+import fr.utbm.front.lo54_projet_front_end.service.ClientService;
 import fr.utbm.lo54.front.lo54_projet_front_end.entity.Client;
-import fr.utbm.lo54.front.lo54_projet_front_end.repository.ClientDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -65,11 +65,9 @@ public class DisplaySessionPerClientServlet extends HttpServlet {
         String clientStrId = request.getParameter("id");
         int clientId = Integer.parseInt(clientStrId);
         
-        ClientDao cdao = new ClientDao();
-        cdao.connect();
-        Client c =cdao.getClientById(clientId);
-        request.setAttribute("client", cdao.getClientById(clientId));
-        cdao.disconnect();
+        ClientService cs =new ClientService();
+        Client c =cs.getClientById(clientId);
+        request.setAttribute("client", cs.getClientById(clientId));
         request.getRequestDispatcher(VUE).forward(request, response);
     }
 

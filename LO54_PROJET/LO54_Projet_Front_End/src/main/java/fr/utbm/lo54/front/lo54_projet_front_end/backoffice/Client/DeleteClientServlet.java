@@ -5,8 +5,7 @@
  */
 package fr.utbm.lo54.front.lo54_projet_front_end.backoffice.Client;
 
-import fr.utbm.lo54.front.lo54_projet_front_end.entity.Client;
-import fr.utbm.lo54.front.lo54_projet_front_end.repository.ClientDao;
+import fr.utbm.front.lo54_projet_front_end.service.ClientService;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -84,11 +83,8 @@ public class DeleteClientServlet extends HttpServlet {
         int id = Integer.parseInt(code);
         try 
         {
-               ClientDao cd = new ClientDao();
-               cd.connect();
-               cd.deleteClient(id);
-               cd.disconnect();
-               
+               ClientService cs =new ClientService();
+               cs.deleteClient(id);
                RequestDispatcher rs =  this.getServletContext().getRequestDispatcher("/VoirClients");
                rs.forward(request, response);
         } 

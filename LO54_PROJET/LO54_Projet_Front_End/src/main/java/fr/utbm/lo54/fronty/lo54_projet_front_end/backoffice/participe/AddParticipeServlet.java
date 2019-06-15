@@ -5,10 +5,10 @@
  */
 package fr.utbm.lo54.fronty.lo54_projet_front_end.backoffice.participe;
 
+import fr.utbm.front.lo54_projet_front_end.service.ClientService;
+import fr.utbm.front.lo54_projet_front_end.service.SessionService;
 import fr.utbm.lo54.front.lo54_projet_front_end.entity.Client;
 import fr.utbm.lo54.front.lo54_projet_front_end.entity.Sessions;
-import fr.utbm.lo54.front.lo54_projet_front_end.repository.ClientDao;
-import fr.utbm.lo54.front.lo54_projet_front_end.repository.SessionsDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -68,16 +68,13 @@ public class AddParticipeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
     {
-        SessionsDao sdao = new SessionsDao();
-        ClientDao cdao = new ClientDao();
         
-        sdao.connect();
-        List<Sessions> sessions = sdao.getAllSessionss();
-        sdao.disconnect();
+        SessionService sS= new SessionService();
+        ClientService cs =new ClientService();
         
-        cdao.connect();
-        List<Client> clients = cdao.getAllClients();
-        cdao.disconnect();
+        List<Sessions> sessions = sS.getAllSessionss();
+        
+        List<Client> clients = cs.getAllClients();
         
         
         // on met tout ça dans la requête
@@ -106,26 +103,22 @@ public class AddParticipeServlet extends HttpServlet {
         try 
         {
             
-            SessionsDao sdao = new SessionsDao();
-            ClientDao cdao = new ClientDao();
+            SessionService sS= new SessionService();
+            ClientService cs =new ClientService();
             
             int sesID = Integer.parseInt(sessionId);
             int cliID = Integer.parseInt(clientId);
             
             
-            cdao.connect();
-            Client c = cdao.getClientById(cliID);
-            cdao.disconnect();
+            Client c = cs.getClientById(cliID);
             
-            sdao.connect();
-            Sessions s = sdao.getSessionsById(sesID);
+            Sessions s = sS.getSessionsById(sesID);
             
             if(!s.getSetClients().contains(c))
             {
                 s.getSetClients().add(c);
-                sdao.setSessions(s);
+                sS.setSessions(s);
             }
-            sdao.disconnect();
                         
             RequestDispatcher rs =  this.getServletContext().getRequestDispatcher(IS_OK_SERVLET);
             rs.forward(request, response);

@@ -5,15 +5,10 @@
  */
 package fr.utbm.lo54.front.lo54_projet_front_end.backoffice.session;
 
-import fr.utbm.lo54.front.lo54_projet_front_end.entity.Course;
-import fr.utbm.lo54.front.lo54_projet_front_end.entity.Location;
+import fr.utbm.front.lo54_projet_front_end.service.SessionService;
 import fr.utbm.lo54.front.lo54_projet_front_end.entity.Sessions;
-import fr.utbm.lo54.front.lo54_projet_front_end.repository.CourseDao;
-import fr.utbm.lo54.front.lo54_projet_front_end.repository.LocationDao;
-import fr.utbm.lo54.front.lo54_projet_front_end.repository.SessionsDao;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Time;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -82,10 +77,8 @@ public class ModifySessionServlet extends HttpServlet
             throws ServletException, IOException 
     {
         String sessId = request.getParameter("id");
-        SessionsDao sd = new SessionsDao();
-        sd.connect();
-        Sessions s = sd.getSessionsById(Integer.parseInt(sessId));
-        sd.disconnect();
+        SessionService sS= new SessionService();
+        Sessions s = sS.getSessionsById(Integer.parseInt(sessId));
         
         request.setAttribute("course", s.getCrs());
         request.setAttribute("location",s.getLoc());
@@ -143,14 +136,12 @@ public class ModifySessionServlet extends HttpServlet
                 int nMax = Integer.parseInt(nbMax);
                 
                 // On ajoute la session
-                SessionsDao sd = new SessionsDao();
-                sd.connect();
-                Sessions s = sd.getSessionsById(id);
+                SessionService sS= new SessionService();
+                Sessions s = sS.getSessionsById(id);
                 s.setStartDate(dDeb);
                 s.setEndDate(dFin);
                 s.setMax(nMax);
-                sd.setSessions(s);
-                sd.disconnect();
+                sS.setSessions(s);
                 
                 RequestDispatcher rs =  this.getServletContext().getRequestDispatcher(IS_OK_SERVLET);
                 rs.forward(request, response);

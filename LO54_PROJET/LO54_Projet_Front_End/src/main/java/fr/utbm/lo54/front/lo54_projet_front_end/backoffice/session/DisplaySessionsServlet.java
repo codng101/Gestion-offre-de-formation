@@ -5,8 +5,8 @@
  */
 package fr.utbm.lo54.front.lo54_projet_front_end.backoffice.session;
 
+import fr.utbm.front.lo54_projet_front_end.service.SessionService;
 import fr.utbm.lo54.front.lo54_projet_front_end.entity.Sessions;
-import fr.utbm.lo54.front.lo54_projet_front_end.repository.SessionsDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -35,10 +35,8 @@ public class DisplaySessionsServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        SessionsDao sd = new SessionsDao();
-        sd.connect();
-        List<Sessions> sessions = sd.getAllSessionss();
-        sd.disconnect();
+        SessionService sS= new SessionService();
+        List<Sessions> sessions = sS.getAllSessionss();
         try (PrintWriter out = response.getWriter()) 
         {
             out.println("<!DOCTYPE html>");

@@ -5,9 +5,8 @@
  */
 package fr.utbm.lo54.front.lo54_projet_front_end.backoffice.Courses;
 
+import fr.utbm.front.lo54_projet_front_end.service.CoursesServices;
 import fr.utbm.lo54.front.lo54_projet_front_end.entity.Course;
-import fr.utbm.lo54.front.lo54_projet_front_end.repository.CourseDao;
-import fr.utbm.lo54.front.lo54_projet_front_end.repository.LocationDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -43,10 +42,8 @@ public class DisplayCoursesServlet extends HttpServlet
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter())
         {
-            CourseDao cDao = new CourseDao();
-            cDao.connect();
-            List<Course> courses = cDao.getAllCourses();
-            cDao.disconnect();
+            CoursesServices cs= new CoursesServices();
+            List<Course> courses = cs.getAllCourses();
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");

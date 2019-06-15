@@ -5,8 +5,8 @@
  */
 package fr.utbm.lo54.front.lo54_projet_front_end.backoffice.Location;
 
+import fr.utbm.front.lo54_projet_front_end.service.LocationService;
 import fr.utbm.lo54.front.lo54_projet_front_end.entity.Location;
-import fr.utbm.lo54.front.lo54_projet_front_end.repository.LocationDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -41,10 +41,8 @@ public class DisplayLocationsServlet extends HttpServlet
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter())
         {
-            LocationDao lDao = new LocationDao();
-            lDao.connect();
-            List<Location> locations = lDao.getAllLocations();
-            lDao.disconnect();
+            LocationService ls=new LocationService();
+            List<Location> locations = ls.getAllLocations();
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");

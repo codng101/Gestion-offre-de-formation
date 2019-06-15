@@ -5,8 +5,8 @@
  */
 package fr.utbm.lo54.front.lo54_projet_front_end.backoffice.Location;
 
+import fr.utbm.front.lo54_projet_front_end.service.LocationService;
 import fr.utbm.lo54.front.lo54_projet_front_end.entity.Location;
-import fr.utbm.lo54.front.lo54_projet_front_end.repository.LocationDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -87,11 +87,9 @@ public class AddLocationServlet extends HttpServlet {
         {
             if(!cityName.trim().equals(""))
             {
-               LocationDao ld = new LocationDao();
+               LocationService ls=new LocationService();
                Location l =  new Location(cityName);
-               ld.connect();
-               ld.addLocation(l);
-               ld.disconnect(); 
+               ls.addLocation(l);
                RequestDispatcher rs =  this.getServletContext().getRequestDispatcher(IS_OK_SERVLET);
                rs.forward(request, response);
             }

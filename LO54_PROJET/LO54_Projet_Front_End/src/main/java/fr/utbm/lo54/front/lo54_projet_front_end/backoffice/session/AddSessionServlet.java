@@ -5,16 +5,14 @@
  */
 package fr.utbm.lo54.front.lo54_projet_front_end.backoffice.session;
 
+import fr.utbm.front.lo54_projet_front_end.service.CoursesServices;
+import fr.utbm.front.lo54_projet_front_end.service.LocationService;
+import fr.utbm.front.lo54_projet_front_end.service.SessionService;
 import fr.utbm.lo54.front.lo54_projet_front_end.entity.Course;
 import fr.utbm.lo54.front.lo54_projet_front_end.entity.Location;
 import fr.utbm.lo54.front.lo54_projet_front_end.entity.Sessions;
-import fr.utbm.lo54.front.lo54_projet_front_end.repository.CourseDao;
-import fr.utbm.lo54.front.lo54_projet_front_end.repository.LocationDao;
-import fr.utbm.lo54.front.lo54_projet_front_end.repository.SessionsDao;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Time;
-import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -84,16 +82,12 @@ public class AddSessionServlet extends HttpServlet {
             throws ServletException, IOException 
     {
         // on va récupérer dans un premier temps les cours qui existent
-        CourseDao cd = new CourseDao();
-        cd.connect();
-        List<Course> courses = cd.getAllCourses();
-        cd.disconnect();
+        CoursesServices cs=new CoursesServices();
+        List<Course> courses = cs.getAllCourses();
         
         // ensuite les lieux
-        LocationDao ld = new LocationDao();
-        ld.connect();
-        List<Location> locations = ld.getAllLocations();
-        ld.disconnect();
+        LocationService ls=new LocationService();
+        List<Location> locations = ls.getAllLocations();
         
         // on met tout ça dans la requête
         request.setAttribute("courses",courses);
@@ -129,16 +123,12 @@ public class AddSessionServlet extends HttpServlet {
         {
             if(!courseId.trim().equals("") && !locationId.trim().equals("") && !heureDeb.trim().equals("") && !heureFin.trim().equals("")&& !nbMax.trim().equals(""))
             {
-                CourseDao cd = new CourseDao();
-                cd.connect();
-                Course c = cd.getCourseById(courseId);
-                cd.disconnect();
+                CoursesServices cs=new CoursesServices();
+                Course c = cs.getCourseById(courseId);
                 
-                LocationDao ld = new LocationDao();
-                ld.connect();
+                LocationService ls=new LocationService();
                 int lId = Integer.parseInt(locationId);
-                Location l = ld.getLocationById(lId);
-                ld.disconnect();
+                Location l = ls.getLocationById(lId);
                 
                 DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd, HH:mm",Locale.FRANCE);
                 String fullDeb = jrDeb+", "+heureDeb;
@@ -151,12 +141,9 @@ public class AddSessionServlet extends HttpServlet {
                 int nMax = Integer.parseInt(nbMax);
                 
                 // On ajoute la session
-                SessionsDao sd = new SessionsDao();
-                sd.connect();
+                SessionService sS= new SessionService();
                 Sessions s = new Sessions(dDeb,dFin,nMax,c,l);
-                
-                sd.addSessions(s);
-                sd.disconnect();
+                sS.addSessions(s);
                 
                 RequestDispatcher rs =  this.getServletContext().getRequestDispatcher(IS_OK_SERVLET);
                 rs.forward(request, response);

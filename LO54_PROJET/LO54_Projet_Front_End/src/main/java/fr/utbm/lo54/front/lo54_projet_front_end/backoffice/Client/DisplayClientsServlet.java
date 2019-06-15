@@ -5,6 +5,7 @@
  */
 package fr.utbm.lo54.front.lo54_projet_front_end.backoffice.Client;
 
+import fr.utbm.front.lo54_projet_front_end.service.ClientService;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -12,7 +13,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import fr.utbm.lo54.front.lo54_projet_front_end.repository.ClientDao;
 import fr.utbm.lo54.front.lo54_projet_front_end.entity.Client;
 import java.util.List;
 /**
@@ -36,10 +36,9 @@ public class DisplayClientsServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) 
         {
-            ClientDao cd = new ClientDao();
-            cd.connect();
-            List<Client> clients = cd.getAllClients();
-            cd.disconnect();
+            ClientService cs= new ClientService();
+            List<Client> clients = cs.getAllClients();
+            
             
             out.println("<!DOCTYPE html>");
             out.println("<html>");

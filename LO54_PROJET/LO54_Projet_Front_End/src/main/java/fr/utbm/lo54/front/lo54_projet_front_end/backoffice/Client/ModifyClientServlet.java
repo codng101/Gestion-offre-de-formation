@@ -5,8 +5,8 @@
  */
 package fr.utbm.lo54.front.lo54_projet_front_end.backoffice.Client;
 
+import fr.utbm.front.lo54_projet_front_end.service.ClientService;
 import fr.utbm.lo54.front.lo54_projet_front_end.entity.Client;
-import fr.utbm.lo54.front.lo54_projet_front_end.repository.ClientDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -74,10 +74,9 @@ public class ModifyClientServlet extends HttpServlet {
         String idString = request.getParameter("id");
         idS = Integer.parseInt(idString);
         
-        ClientDao cd = new ClientDao();
-        cd.connect();
-        Client c = cd.getClientById(idS);
-        cd.disconnect();
+        ClientService cs= new ClientService();
+        Client c = cs.getClientById(idS);
+        
         
         request.setAttribute("lName", c.getLastname());
         request.setAttribute("fName", c.getFirstname());
@@ -114,9 +113,8 @@ public class ModifyClientServlet extends HttpServlet {
             if(!nFam.trim().equals("") && !prenom.trim().equals("") && !adress.trim().equals("") && !numTel.trim().equals("") && !mail.trim().equals(""))
             {
                 
-                ClientDao cd = new ClientDao();
-                cd.connect();
-                Client c = cd.getClientById(id);
+                ClientService cs= new ClientService();
+                Client c = cs.getClientById(id);
                 
                 c.setAddress(adress);
                 c.setEmail(mail);
@@ -124,8 +122,7 @@ public class ModifyClientServlet extends HttpServlet {
                 c.setLastname(nFam);
                 c.setPhone(numTel);
                 
-                cd.setClient(c);
-                cd.disconnect();
+                cs.setClient(c);
                 
                 request.getRequestDispatcher(IS_OK_SERVLET).forward(request,response);
             }

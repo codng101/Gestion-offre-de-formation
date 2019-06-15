@@ -5,8 +5,8 @@
  */
 package fr.utbm.lo54.front.lo54_projet_front_end.backoffice.Courses;
 
+import fr.utbm.front.lo54_projet_front_end.service.CoursesServices;
 import fr.utbm.lo54.front.lo54_projet_front_end.entity.Course;
-import fr.utbm.lo54.front.lo54_projet_front_end.repository.CourseDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -96,20 +96,20 @@ public class AddCourseServlet extends HttpServlet
         {
             if(!code.trim().equals("") && !titre.trim().equals("")  )
             {
-                CourseDao cd = new CourseDao();
-                cd.connect();
-                if(!cd.existCourseCode(code))
+                
+                CoursesServices cs= new CoursesServices();
+                
+                if(!cs.existCourseCode(code))
                 {
                     Course c = new Course(code,titre);
-                    cd.addCourse(c);
-                    cd.disconnect(); 
+                    cs.addCourse(c);
 
                     RequestDispatcher rs =  this.getServletContext().getRequestDispatcher(IS_OK_SERVLET);
                     rs.forward(request, response);
                 }
                 else
                 {
-                    cd.disconnect();
+                    
                     try (PrintWriter out = response.getWriter()) 
                     {
                         out.println("<meta http-equiv='refresh' content='2;URL=http://localhost:8080/LO54_Projet_Front_End/AjouterCours'>");//redirects after 2 seconds

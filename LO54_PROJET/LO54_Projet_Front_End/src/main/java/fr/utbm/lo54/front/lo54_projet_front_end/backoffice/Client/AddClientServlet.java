@@ -5,8 +5,8 @@
  */
 package fr.utbm.lo54.front.lo54_projet_front_end.backoffice.Client;
 
+import fr.utbm.front.lo54_projet_front_end.service.ClientService;
 import fr.utbm.lo54.front.lo54_projet_front_end.entity.Client;
-import fr.utbm.lo54.front.lo54_projet_front_end.repository.ClientDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -93,10 +93,8 @@ public class AddClientServlet extends HttpServlet {
             if(!nFam.trim().equals("") && !prenom.trim().equals("") && !adress.trim().equals("") && !numTel.trim().equals("") && !mail.trim().equals(""))
             {
                 Client c = new Client(nFam,prenom,adress,numTel,mail );
-                ClientDao cd = new ClientDao();
-                cd.connect();
-                cd.addClient(c);
-                cd.disconnect();
+                ClientService cs =new ClientService();
+                cs.addClient(c);
                 
                 request.getRequestDispatcher(IS_OK_SERVLET).forward(request,response);
             }

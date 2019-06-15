@@ -5,8 +5,8 @@
  */
 package fr.utbm.lo54.front.lo54_projet_front_end.backoffice.Courses;
 
+import fr.utbm.front.lo54_projet_front_end.service.CoursesServices;
 import fr.utbm.lo54.front.lo54_projet_front_end.entity.Course;
-import fr.utbm.lo54.front.lo54_projet_front_end.repository.CourseDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -94,13 +94,11 @@ public class ModifyCourseServlet extends HttpServlet
         String titre =request.getParameter(CHAMP_TITRE);
         try 
         {
-            CourseDao cd = new CourseDao();
+            CoursesServices cs= new CoursesServices();
             if(!titre.trim().equals(""))
             {
                 Course c = new Course(code,titre);
-                cd.connect();
-                cd.setCourse(c);
-                cd.disconnect();
+                cs.setCourse(c);
                 RequestDispatcher rs =  this.getServletContext().getRequestDispatcher(IS_OK_SERVLET);
                 rs.forward(request, response);
             }

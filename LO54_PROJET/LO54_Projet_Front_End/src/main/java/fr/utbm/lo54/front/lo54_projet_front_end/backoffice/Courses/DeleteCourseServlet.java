@@ -5,8 +5,8 @@
  */
 package fr.utbm.lo54.front.lo54_projet_front_end.backoffice.Courses;
 
+import fr.utbm.front.lo54_projet_front_end.service.CoursesServices;
 import fr.utbm.lo54.front.lo54_projet_front_end.entity.Course;
-import fr.utbm.lo54.front.lo54_projet_front_end.repository.CourseDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -91,12 +91,11 @@ public class DeleteCourseServlet extends HttpServlet
         String code =request.getParameter(CHAMP_CODE);
         try 
         {
-               CourseDao cd = new CourseDao();
-               cd.connect();
-               Course c = cd.getCourseById(code);
+               CoursesServices cs= new CoursesServices();
                
-               cd.deleteCourse(c);
-               cd.disconnect(); 
+               Course c = cs.getCourseById(code);
+               
+               cs.deleteCourse(c);
                
                RequestDispatcher rs =  this.getServletContext().getRequestDispatcher("/VoirCours");
                rs.forward(request, response);

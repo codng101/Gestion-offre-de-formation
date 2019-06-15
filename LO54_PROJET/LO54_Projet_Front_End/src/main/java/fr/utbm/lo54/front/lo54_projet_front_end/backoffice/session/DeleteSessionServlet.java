@@ -5,8 +5,7 @@
  */
 package fr.utbm.lo54.front.lo54_projet_front_end.backoffice.session;
 
-import fr.utbm.lo54.front.lo54_projet_front_end.entity.Sessions;
-import fr.utbm.lo54.front.lo54_projet_front_end.repository.SessionsDao;
+import fr.utbm.front.lo54_projet_front_end.service.SessionService;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -85,10 +84,8 @@ public class DeleteSessionServlet extends HttpServlet
         {
             String sessIdString = request.getParameter("sessionId");
             int sessId = Integer.parseInt(sessIdString.trim());
-            SessionsDao sd = new SessionsDao();
-            sd.connect();
-            sd.deleteSessions(sessId);
-            sd.disconnect();
+            SessionService sS= new SessionService();
+            sS.deleteSessions(sessId);
             RequestDispatcher rs =  this.getServletContext().getRequestDispatcher("/VoirSessions");
             rs.forward(request, response);
         } 

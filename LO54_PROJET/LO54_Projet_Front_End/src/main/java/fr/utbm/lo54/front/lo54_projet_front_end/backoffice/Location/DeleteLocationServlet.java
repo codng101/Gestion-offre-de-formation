@@ -5,8 +5,8 @@
  */
 package fr.utbm.lo54.front.lo54_projet_front_end.backoffice.Location;
 
+import fr.utbm.front.lo54_projet_front_end.service.LocationService;
 import fr.utbm.lo54.front.lo54_projet_front_end.entity.Location;
-import fr.utbm.lo54.front.lo54_projet_front_end.repository.LocationDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -93,13 +93,11 @@ public class DeleteLocationServlet extends HttpServlet
         int id = Integer.parseInt(idString);
         try 
         {
-               LocationDao ld = new LocationDao();
+               LocationService ls=new LocationService();
                Location l =  new Location(cityName);
                l.setId(id);
                
-               ld.connect();
-               ld.deleteLocation(l);
-               ld.disconnect(); 
+               ls.deleteLocation(l);
                
                RequestDispatcher rs =  this.getServletContext().getRequestDispatcher("/VoirLieux");
                rs.forward(request, response);
