@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fr.utbm.lo54.projet.jasperReport;
+package fr.utbm.lo54.front.lo54_projet_front_end.jasperReport;
 
 import java.sql.Connection;
 import java.sql.Driver;
