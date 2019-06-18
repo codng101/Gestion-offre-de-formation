@@ -19,6 +19,7 @@ public class Client implements Serializable
     private String phone;
     private String email;
     
+    // Marked eager so that we can get all the information related to the session
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "clients") // Case sensitive, référence le set contenu dans l'entité Sessions (le set s'appelle clients)
     private Set<Sessions> sessions; 
 

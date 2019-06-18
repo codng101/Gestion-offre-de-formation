@@ -3,11 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fr.utbm.lo54.front.lo54_projet_front_end.backoffice.ExportationPDF;
+package fr.utbm.lo54.front.lo54_projet_front_end.backoffice.session;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,13 +15,12 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author guill
+ * @author Victor
  */
-@WebServlet(name = "ExportationPDF", urlPatterns = {"/ExportationPDF"})
-public class ExportationPDF extends HttpServlet {
+@WebServlet(name = "SeeSessionsServlet", urlPatterns = {"/FiltreSessions"})
+public class SeeSessionsServlet extends HttpServlet {
 
-    
-    public static final String VUE = "/WEB-INF/ExportationPDF.jsp";
+    public static final String VUE = "/WEB-INF/Sessions/seeSessions.jsp";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -40,10 +38,10 @@ public class ExportationPDF extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ExportationPDF</title>");            
+            out.println("<title>Servlet SeeSessionsServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ExportationPDF at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet SeeSessionsServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -59,10 +57,9 @@ public class ExportationPDF extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException 
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
     {
-        RequestDispatcher rd = this.getServletContext().getRequestDispatcher(VUE);
-        rd.forward(request, response);
+        SessionsService sservice = new SessionService();
     }
 
     /**
@@ -74,16 +71,9 @@ public class ExportationPDF extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException 
-    {
-        /*
-        <option value="1">Liste des client</option>
-                <option value="2">Liste des courses</option>
-        */
-        String val = request.getParameter("selectExport");
-        int choice = Integer.parseInt(val);
-        
-         // TODO : actually export
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
     }
 
     /**

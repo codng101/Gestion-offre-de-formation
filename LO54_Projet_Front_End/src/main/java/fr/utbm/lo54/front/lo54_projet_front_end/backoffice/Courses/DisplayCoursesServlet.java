@@ -51,7 +51,7 @@ public class DisplayCoursesServlet extends HttpServlet
             out.println(" <link rel=\"stylesheet\" type=\"text/css\" href=\"boots.css\">");
             out.println("<title>Liste des lieux</title>");            
             out.print("<script>" +
-                        "function myFunction() {" +
+                        "function filter() {" +
                         "  var input, filter, table, tr, td, i, txtValue;" +
                         "  input = document.getElementById(\"myInput\");" +
                         "  filter = input.value.toUpperCase();" +
@@ -80,7 +80,7 @@ public class DisplayCoursesServlet extends HttpServlet
                 out.println("</ol>");
             out.println("</nav>");
             
-            out.println("<input type='text' id='myInput' style='width:50%;margin-bottom:5px;margin-left:5px' onkeyup='myFunction()' placeholder='Trier par titre ...'>");
+            out.println("<input type='text' id='myInput' style='width:50%;margin-bottom:5px;margin-left:5px' onkeyup='filter()' placeholder='Trier par titre ...'>");
             out.println("<table id ='myTable' class=\"table\">");
                 out.println("<thead class=\"thead-light\">");
                     out.println("<tr> ");

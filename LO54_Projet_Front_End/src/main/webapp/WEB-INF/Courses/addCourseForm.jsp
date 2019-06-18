@@ -19,7 +19,7 @@
               <li class="breadcrumb-item active" aria-current="page">Cours</li>
             </ol>
         </nav>
-        <form style='margin-left: 10px;' action='AjouterCours' method='post' accept-charset="UTF-8">
+        <form style='margin-left: 10px;width:50%' action='AjouterCours' method='post' accept-charset="UTF-8">
             <div class="form-group">
               <label for="code">Code du cours</label>
               <input type="text" class="form-control" name="code" id='code' placeholder="Entrez le code du cours..." required>
