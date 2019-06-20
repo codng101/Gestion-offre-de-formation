@@ -40,7 +40,7 @@ public class GeneratePDF {
             connection = DriverManager.getConnection(url, login, password);
 
             // - Chargement et compilation du rapport
-            JasperDesign jasperDesign = JRXmlLoader.load("C:\\Users\\gmulle01\\Documents\\GitHub\\Gestion-offre-de-formation\\jasperReportFile\\ListeClient.jrxml");
+            JasperDesign jasperDesign = JRXmlLoader.load("C:\\Users\\guill\\Documents\\GitHub\\Gestion-offre-formation-\\LO54_Projet_Front_End\\src\\main\\resources\\jasperReportFile\\ListeClient.jrxml");
             JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
             System.out.print("1");
             // - Paramètres à envoyer au rapport
@@ -52,7 +52,7 @@ public class GeneratePDF {
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, connection);
             System.out.print("3");
             // - Création du rapport au format PDF
-            JasperExportManager.exportReportToPdfFile(jasperPrint, "C:\\Users\\gmulle01\\Documents\\GitHub\\Gestion-offre-de-formation\\jasperReportFile\\ListeClient.pdf");
+            JasperExportManager.exportReportToPdfFile(jasperPrint, "C:\\Users\\guill\\Documents\\GitHub\\Gestion-offre-formation-\\LO54_Projet_Front_End\\src\\main\\resources\\jasperReportFile\\ListeClient.pdf");
         } catch (JRException e) {
 
             e.printStackTrace();
@@ -85,7 +85,7 @@ public class GeneratePDF {
             connection = DriverManager.getConnection(url, login, password);
 
             // - Chargement et compilation du rapport
-            JasperDesign jasperDesign = JRXmlLoader.load("C:\\Users\\gmulle01\\Documents\\GitHub\\Gestion-offre-de-formation\\jasperReportFile\\ListeCourses.jrxml");
+            JasperDesign jasperDesign = JRXmlLoader.load("C:\\Users\\guill\\Documents\\GitHub\\Gestion-offre-formation-\\LO54_Projet_Front_End\\src\\main\\resources\\jasperReportFile\\ListeCourses.jrxml");
             JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
 
             // - Paramètres à envoyer au rapport
@@ -96,7 +96,7 @@ public class GeneratePDF {
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, connection);
 
             // - Création du rapport au format PDF
-            JasperExportManager.exportReportToPdfFile(jasperPrint, "C:\\Users\\gmulle01\\Documents\\GitHub\\Gestion-offre-de-formation\\jasperReportFile\\ListeCourse.pdf");
+            JasperExportManager.exportReportToPdfFile(jasperPrint, "C:\\Users\\guill\\Documents\\GitHub\\Gestion-offre-formation-\\LO54_Projet_Front_End\\src\\main\\resources\\jasperReportFile\\ListeCourse.pdf");
         } catch (JRException e) {
 
             e.printStackTrace();

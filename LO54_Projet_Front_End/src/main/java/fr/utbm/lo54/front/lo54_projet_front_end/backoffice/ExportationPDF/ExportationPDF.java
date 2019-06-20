@@ -5,6 +5,7 @@
  */
 package fr.utbm.lo54.front.lo54_projet_front_end.backoffice.ExportationPDF;
 
+import fr.utbm.lo54.front.lo54_projet_front_end.jasperReport.GeneratePDF;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -82,8 +83,37 @@ public class ExportationPDF extends HttpServlet {
         */
         String val = request.getParameter("selectExport");
         int choice = Integer.parseInt(val);
+        GeneratePDF g =new GeneratePDF();
+        try{
+        if (choice==1 ){
+            g.ListeClient();
+        }
+        else{
+            g.ListeCourse();
+        }
+        RequestDispatcher rs =  this.getServletContext().getRequestDispatcher("/index.html");
+                    rs.forward(request, response);
+        }
+        catch (Exception e) 
+        {  
+            try (PrintWriter out = response.getWriter()) 
+            { 
+                out.println("<!DOCTYPE html>");
+                out.println("<html>");
+                out.println("<head>");
+                out.println(" <link rel=\"stylesheet\" type=\"text/css\" href=\"boots.css\">");
+                out.println("<title>Servlet TestServlet</title>");            
+                out.println("</head>");
+                out.println("<body>");
+                out.println("<h1>Erreur lors de l'exportation</h1>");
+                out.println("<div> Erreur : ");
+                out.println(e.getMessage()+"</div>");
+                out.println("<div><a href='http://localhost:8080/LO54_Projet_Front_End/index.html'> Retour à la page d'acceuil </a></div>");
+                out.println("</body>");
+                out.println("</html>");
+            }
+        }
         
-         // TODO : actually export
     }
 
     /**
